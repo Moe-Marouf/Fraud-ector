@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css//navbar.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css" />
     <title>Transaction History</title>
   </head>
   <body>
@@ -36,7 +37,14 @@
           <h3>Choose the date of the transactions</h3>
           <div class="second-title">
             <div class="content-text">
-              <p>This is where the calendar will be</p>
+              <div>
+                <label for="datepicker">Select a Date:</label>
+                <input type="text" id="datepicker" />
+              </div>
+        
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/pikaday.min.js"></script>
+              <script src="datepicker.js"></script>
             </div>
             <table>
               <thead>
