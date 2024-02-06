@@ -18,9 +18,9 @@ body, html {
 }
 
 .login-card {
-  width: 100%;
-  max-width: 400px; /* Adjust as needed */
-  padding: 20px;
+  width: 400px;
+  max-width: 500px; /* Adjust as needed */
+  padding: 40px;
   background-color: #f8f8f8;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -53,6 +53,14 @@ body, html {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+}
+
+/* Positioning the 'Remember password' checkbox and 'Forgot password?' link */
+.form-group .checkbox {
+  display: flex;
+  justify-content: space-between; /* Spreads out the checkbox and the link */
+  align-items: center; /* Centers them vertically */
+  margin-bottom: 20px; /* Adds space below the group */
 }
 
 /* Style the login button */
