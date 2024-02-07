@@ -6,3 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     yearRange: [1900, moment().year()], // Customize the year range as needed
   });
 });
+
+
+//This is for the 2nd history page, to search by date
+document.getElementById('transaction-date').addEventListener('change', function() {
+  var selectedDate = this.value;
+  //use selectedDate to fetch and display the transactions for this date
+});
+
