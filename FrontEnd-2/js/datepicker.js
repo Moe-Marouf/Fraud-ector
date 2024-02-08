@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
       format: "MM/DD/YYYY", // Customize the date format if needed
       showYearDropdown: true, // Enable year dropdown
       yearRange: [1900, moment().year()], // Customize the year range as needed
+      onSelect: function (date) {
+        const formattedDate = moment(date).format("MM/DD/YYYY");
+        window.location.href = "TransactionHistory2.html?date=" + formattedDate;
+      },
     });
   });
   
