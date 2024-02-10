@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       yearRange: [1900, moment().year()], // Customize the year range as needed
       onSelect: function (date) {
         const formattedDate = moment(date).format("MM/DD/YYYY");
-        window.location.href = "TransactionHistory2.html?date=" + formattedDate;
+        window.location.href = window.location.origin + "/transactionhistory2/v1/?date=" + encodeURIComponent(formattedDate);
       },
     });
   });

@@ -36,7 +36,9 @@ app.get("/transactionhistory/v1/", (req, res) => {
 });
 
 app.get("/transactionhistory2/v1/", (req, res) => {
-  res.render("rules");
+  const selectedDate = req.query.date;
+
+  res.render('transactionhistory2', { selectedDate });
 });
 
 app.get("/charts/v1/", (req, res) => {
