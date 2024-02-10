@@ -41,8 +41,8 @@ function sendOTP() {
         // You should implement your own validation logic for email, password, and OTP
         // For demonstration purposes, I'm assuming they are correct if they are not empty
         if (email.trim() !== '' && password.trim() !== '' && otp.trim() !== '') {
-            // Redirect to home.html
-            window.location.href = 'home.html';
+            // Redirect to /home/v1/
+            window.location.href = '/home/v1/';
         } else {
             alert('Please fill in all fields correctly.');
         }
