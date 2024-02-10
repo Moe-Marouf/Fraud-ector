@@ -14,6 +14,7 @@
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
+    <link rel="stylesheet" href="/css/transactionhistory2.css">
 </head>
 <body>
     <div class="container-fluid position-relative d-flex p-0">
@@ -83,8 +84,80 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
-            <div class="container-fluid pt-4 px-4">
+            <!--
+            ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
+            
+<div class="search-form">
+    <input type="text" id="transactionId" placeholder="Transaction ID">
+    <input type="text" id="senderId" placeholder="Sender ID">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="date" id="transaction-date" name="transaction-date">
+
+    <button onclick="searchTransactions()">Search</button>
+    
+</div>
+
+               <!-- Transactions List -->
+
+<div class="transactions-list" id="transactionsList">
+    <table class="table">
+        <thead>
+          <tr>
+            <th class="top-bar">Transaction ID</th>
+            <th>Sender ID</th>
+            <th>Amount</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+
+    
+      
+    <!-- Dynamic content can be loaded here -->
+</div>
+            <!-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-secondary rounded p-4">
@@ -120,7 +193,7 @@
                                     <tr>
                                         <!-- Here we have applied inline style 
                                              to make it more attractive-->
-                                        <th>Sun</th>
+                                        <!-- <th>Sun</th>
                                         <th>Mon</th>
                                         <th>Tue</th>
                                         <th>Wed</th>
@@ -232,29 +305,34 @@
                                 <input type="number" id="amount" placeholder="Amount">
                                 <button onclick="searchTransactions()">Search</button>
                             </div>
-                            <!-- Transactions List -->
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <div class="transactions-list" id="transactionsList">
-                                                            <!-- Dynamic content can be loaded here -->
-                                                        </div>
-                        </div>
+                             Transactions List -->
+                    <!-- <div class="col-sm-12 col-xl-6">
+                        assa
+                        <div class="bg-secondary rounded h-100 p-4"> 
+                            
+                            ggg
+                                            </div>
                     </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --> 
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
+<<<<<<< Updated upstream
                             &copy; <a href="#">Fraudector</a>, All Right Reserved. 
+=======
+                            &copy; <a href="#">Fraud-ector</a>, All Right Reserved. 
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Footer End -->
         </div>
         <!-- Content End -->

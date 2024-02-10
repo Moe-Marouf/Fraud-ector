@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.search-form {
+    margin: 20px;
+    text-align: center;
+    padding-left: 150px;
+}
+
+.transactions-list {
+    margin: 20px;
+    max-height: 500px; 
+    overflow-y: auto; /* Enables vertical scrolling */
+    border: 1px 1px 1px solid #ccc;
+    padding: 10px;
+    padding-left: 50px;
+}
+
+.transaction-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-family: 'Arial', sans-serif; /* Use a modern font */
+  }
+  
+  .table thead th {
+    background-color: #191C24; /* Header background */
+    color: white;
+    padding: 10px;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+  }
+  
+  .table td, .modern-table th {
+    border: 1px solid #ddd; /* Light border for cells */
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #191C24; /* Zebra striping for rows */
+    text-align: center;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #191c248b; /* Color change on mouse over */
+  }
+
+  .logo img {
+    max-width: 100px; /* Adjust logo size as needed */
+    margin-bottom: 20px;
+  }  
+
+.row{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 575px;
+}
