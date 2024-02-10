@@ -24,6 +24,7 @@
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -48,23 +49,46 @@
                             </a>
                             <h3>Log In</h3>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <div class="form-floating mb-3" id="emailInputContainer">
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" oninput="changeInputBackground()">
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                             <label for="floatingPassword">Password</label>
                         </div>
+                        <button type="submit"  onclick="sendOTP()">Send OTP</button>
+                        <div class="form-floating mb-4">
+                            <input type="text" id="otp_inp" class="form-control" placeholder="OTP">
+                            <label for="floatingPassword">Enter the OTP sent to your Email...</label>
+                        </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <a href="">Forgot Password</a>
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Log in</button>
-                  
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4" onclick="validateAndRedirect()">Log in</button>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <script>
+            function sendOTP() {
+                // You can implement the logic to send OTP to the provided email here
+                alert("OTP sent to your Email");
+            }
+        
+            document.getElementById('otp-btn').addEventListener('click', function() {
+                var otp = document.getElementById('otp_inp').value;
+                // You can implement the logic to verify the OTP here
+                if (otp === "1234") { // Replace "1234" with the actual OTP verification logic
+                    alert("OTP Verified");
+                    // Proceed with login or any other action after OTP verification
+                } else {
+                    alert("Invalid OTP");
+                }
+            });
+        </script>
+        
         <!-- Sign In End -->
     </div>
 
@@ -81,6 +105,7 @@
 
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
+    <script src="/js/emailotp.js"></script>
 </body>
 
 </html>
