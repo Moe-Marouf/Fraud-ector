@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 
 // Routes
 app.get("/", (req, res) => {
-  res.redirect("dashboard");
+  res.redirect("/home/v1/");
 });
 
 app.get("/home/v1/", (req, res) => {
@@ -40,7 +40,7 @@ app.get("/transactionhistory2/v1/", (req, res) => {
 });
 
 app.get("/charts/v1/", (req, res) => {
-  res.render("charts");
+  res.render("chart");
 });
 
 app.use((req, res) => {
