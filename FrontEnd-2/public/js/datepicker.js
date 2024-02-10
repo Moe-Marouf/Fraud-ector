@@ -4,12 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
       format: "MM/DD/YYYY", // Customize the date format if needed
       showYearDropdown: true, // Enable year dropdown
       yearRange: [1900, moment().year()], // Customize the year range as needed
+
+      //Changed the format to make it work with transactionHistory2
       onSelect: function (date) {
-        const formattedDate = moment(date).format("MM/DD/YYYY");
+        // Format the date to YYYY-MM-DD
+        const formattedDate = moment(date).format("YYYY-MM-DD");
         window.location.href = window.location.origin + "/transactionhistory2/v1/?date=" + encodeURIComponent(formattedDate);
       },
     });
   });
+
+  
   
   
   //This is for the 2nd history page, to search by date
