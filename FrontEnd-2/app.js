@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 
 // Routes
 app.get("/", (req, res) => {
-  res.redirect("/home/v1/");
+  res.redirect("/login/v1/");
 });
 
 app.get("/home/v1/", (req, res) => {

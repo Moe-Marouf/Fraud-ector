@@ -41,7 +41,7 @@ function verifyOTP() {
     if (!savedOTP) {
         alert("OTP not generated. Please generate OTP first.");
         return;
-    } 
+    }
     // Check if OTP is correct and not expired
     if (otp_inp === savedOTP && authenticateUser(email, password)) {
         // Redirect to a new page upon successful verification
@@ -98,7 +98,8 @@ function validatePassword(password) {
 const users = [
     { email: "218110207@psu.edu.sa", password: "1" },
     { email: "220110431@psu.edu.sa", password: "1" },
-    { email: "email3@example.com", password: "password3" }
+    { email: "220110081@psu.edu.sa", password: "1" },
+    { email: "218110172@psu.edu.sa", password: "1" },
 ];
 
 // Dummy function to authenticate user (replace with your own authentication logic)
