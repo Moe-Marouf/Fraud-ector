@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Charts & Reports</title>
@@ -15,10 +16,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
 </head>
+
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -33,12 +36,14 @@
                     <h3 class="text-primary"></i>Fraudector</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
-                 
+
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="/home/v1/" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="/transactionhistory/v1/" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Transactions</a>
-                    <a href="/charts/v1/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts & Reports</a>
+                    <a href="/transactionhistory/v1/" class="nav-item nav-link"><i
+                            class="fa fa-th me-2"></i>Transactions</a>
+                    <a href="/charts/v1/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts &
+                        Reports</a>
                     <a href="/rules/v1/" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Customize Rules</a>
                 </div>
             </nav>
@@ -54,7 +59,7 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-              
+
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -72,7 +77,8 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="/image/user.png" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="/image/user.png" alt=""
+                                style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Uesr</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
@@ -85,9 +91,50 @@
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                
-                    
+                <div class="bg-secondary rounded p-4">
+                    <form action="your-server-endpoint" method="post">
+                        <fieldset>
+                            <legend>Customize Rules of Detection</legend>
+                            <p>Use the filters below to customize the rules of detection</p>
+
+                            <label>
+                                <input type="radio" name="rule" value="unusual_location">
+                                Unusual location
+                            </label>
+                            <input type="text" name="location" placeholder="Any location outside of:"><br>
+
+                            <label>
+                                <input type="radio" name="rule" value="unusual_time">
+                                Unusual time
+                            </label>
+                            <input type="text" name="time" placeholder="Transactions during:"><br>
+
+                            <label>
+                                <input type="radio" name="rule" value="unusual_amount">
+                                Unusual amount
+                            </label>
+                            <input type="text" name="amount" placeholder="Transactions above:"><br>
+
+                            <label>
+                                <input type="radio" name="rule" value="multiple_transactions">
+                                Multiple transactions in short time
+                            </label>
+                            <input type="text" name="time_interval" placeholder="Allowed time interval:"><br>
+
+                            <label>
+                                <input type="radio" name="rule" value="unusual_ip">
+                                Unusual IP address
+                            </label>
+                            <input type="text" name="ip_address" placeholder="Any IP address outside of:"><br>
+
+                            <label>
+                                <input type="radio" name="rule" value="geographical_inconsistency">
+                                Geographical Inconsistency
+                            </label>
+                        </fieldset>
+
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
                 </div>
             </div>
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
@@ -96,7 +143,7 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Fraudector</a>, All Right Reserved. 
+                            &copy; <a href="#">Fraudector</a>, All Right Reserved.
                         </div>
                     </div>
                 </div>
