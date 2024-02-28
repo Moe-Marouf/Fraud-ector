@@ -13,3 +13,16 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
     #89ff00 0 2px 12px;
 }
+/* for the chart page */
+.chart-container {
+  height: 500px; /* Adjust the height as needed */
+}
+
+.footer {
+  margin-top: 20px; /* Adjust the value as needed */
+}
+.table-container {
+  max-height: 300px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+/* for the chart page */
