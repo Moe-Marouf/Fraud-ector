@@ -90,7 +90,7 @@
             </nav>
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
-            <div class="container-fluid pt-4 px-4">
+            <div class="container-fluid pt-4 px-4 chart-container">
                 <div class="row g-4">
                     <div class="row g-4">
                         <div class="col-sm-6 col-xl-3">
@@ -107,7 +107,7 @@
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Total Transaction</p>
-                                    <h6 class="mb-0">{{Total.Transaction}}</h6>
+                                    <h6 class="mb-0" id="total-transaction"></h6>
                                 </div>
                             </div>
                         </div>
@@ -125,26 +125,35 @@
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Total Fraud</p>
-                                    <h6 class="mb-0">{{Total.Fraud}}</h6>
+                                    <h6 id="total-fraud" class="mb-0">0</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-5">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Single Bar Chart</h6>
-                            <canvas id="bar-chart"></canvas>
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="table-container">
+                                <table id="transaction-table" class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr class="text-white">
+                                            <th scope="col">Number</th>
+                                            <th scope="col">NameOrig</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">OldBalanceOrg</th>
+                                            <th scope="col">NewBalanceOrig</th>
+                                            <th scope="col">NameDest</th>
+                                            <th scope="col">IsFraud</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table rows will be dynamically generated here -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-5">
-                        <div class="bg-secondary rounded h-70 p-4">
-                            <h6 class="mb-4">Pie Chart</h6>
-                            <canvas id="pie-chart"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+                    
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
