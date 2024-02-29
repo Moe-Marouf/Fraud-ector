@@ -1,19 +1,7 @@
 const mongoose = require("mongoose");
 
 const transactionSchema = new mongoose.Schema({
-  trans_ID: {
-    type: Number,
-    required: true,
-  },
-  sender_ID: {
-    type: Number,
-    required: true,
-  },
-  receiver_ID: {
-    type: Number,
-    required: true,
-  },
-  trans_type: {
+  type: {
     type: String,
     required: true,
   },
@@ -21,35 +9,35 @@ const transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  currency: {
+  nameOrg: {
     type: String,
     required: true,
   },
-  timestamp: {
-    type: Date,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-  },
-  trans_status: {
-    type: String,
-    required: true,
-  },
-  trans_fee: {
+  oldBalanceOrg: {
     type: Number,
     required: true,
   },
-  channel: {
+  newBalanceOrg: {
+    type: Number,
+    required: true,
+  },
+  nameDest: {
     type: String,
     required: true,
   },
-  is_Fraud: {
+  oldBalanceDest: {
+    type: Number,
+    required: true,
+  },
+  newBalanceDest: {
+    type: Number,
+    required: true,
+  },
+  isFraud: {
+    type: Boolean,
+    required: true,
+  },
+  isFlaggedFraud: {
     type: Boolean,
     required: true,
   },
