@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    //for transactionhistory2
     function populateTable(data) {
         var tableBody = document.querySelector("#transaction-table2 tbody");
         tableBody.innerHTML = ""; // Clear existing rows
@@ -56,9 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    }   
- // Function to create pie chart based on type data
- function createPieChartType(data) {
+    }
+    
+   // Function to create pie chart based on type data
+function createPieChartType(data) {
     var ctxPieType = document.getElementById("pie-chart-type").getContext("2d");
 
     // Parse CSV data
@@ -268,12 +268,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+  // Function to calculate total fraud
+function calculateTotalFraud(data) {
+    let totalFraud = 0;
+    data.forEach(function(row) {
+        if (row['isFraud'] === '1') {
+            totalFraud++;
+        }
+    });
+    return totalFraud;
+}
 
+// Update the HTML element with the total fraud count
+function updateTotalFraudElement(total) {
+    const totalFraudElement = document.getElementById('total-fraud');
+    totalFraudElement.textContent = total;
+}
+
+// Read CSV and calculate total fraud
+readCSV('data.csv', function(data) {
+    const totalFraud = calculateTotalFraud(data);
+    updateTotalFraudElement(totalFraud);
+});
   
 
 
     // Read CSV and create charts
-    readCSV('/js/Data.csv', function(data) {
+    readCSV('data.csv', function(data) {
         populateTable(data)
         createPieChart(data);
         createBarChart(data);
