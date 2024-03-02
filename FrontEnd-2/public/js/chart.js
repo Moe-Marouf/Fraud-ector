@@ -270,7 +270,7 @@ readCSV('data.csv', function(data) {
 
 
     // Read CSV and create charts
-    readCSV('Data.csv', function(data) {
+    readCSV('/js/Data.csv', function(data) {
         populateTable(data)
         createPieChart(data);
         createBarChart(data);
