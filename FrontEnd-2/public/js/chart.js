@@ -244,28 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-  // Function to calculate total fraud
-function calculateTotalFraud(data) {
-    let totalFraud = 0;
-    data.forEach(function(row) {
-        if (row['isFraud'] === '1') {
-            totalFraud++;
-        }
-    });
-    return totalFraud;
-}
 
-// Update the HTML element with the total fraud count
-function updateTotalFraudElement(total) {
-    const totalFraudElement = document.getElementById('total-fraud');
-    totalFraudElement.textContent = total;
-}
-
-// Read CSV and calculate total fraud
-readCSV('data.csv', function(data) {
-    const totalFraud = calculateTotalFraud(data);
-    updateTotalFraudElement(totalFraud);
-});
   
 
 
