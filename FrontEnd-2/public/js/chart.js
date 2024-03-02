@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
   
     
    // Function to create pie chart based on type data
@@ -257,28 +258,17 @@ function calculateTotalFraud(data) {
     return totalFraud;
 }
 
-// Update the HTML element with the total fraud count
-function updateTotalFraudElement(total) {
-    const totalFraudElement = document.getElementById('total-fraud');
-    totalFraudElement.textContent = total;
-}
 
-// Read CSV and calculate total fraud
-readCSV('data.csv', function(data) {
-    const totalFraud = calculateTotalFraud(data);
-    updateTotalFraudElement(totalFraud);
+
+   // Read CSV and create charts
+readCSV('/js/Data.csv', function(data) {
+    populateTable(data)
+    createPieChart(data);
+    createBarChart(data);
+    createPieChartType(data);
+    createBarChartType(data);
+
 });
-  
 
-
-    // Read CSV and create charts
-    readCSV('data.csv', function(data) {
-        populateTable(data)
-        createPieChart(data);
-        createBarChart(data);
-        createPieChartType(data);
-        createBarChartType(data);
-
-    });
 
 });
