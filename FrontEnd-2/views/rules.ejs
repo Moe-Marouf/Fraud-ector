@@ -97,47 +97,50 @@
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary rounded p-4">
-                    <form action="/rules/v1/" method="post">
+                    <form action="" method="post">
                         <fieldset>
                             <legend>Customize Rules of Detection</legend>
                             <p>Use the filters below to customize the rules of detection</p>
-                    
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="unusual_location">
                                 Unusual location
                             </label>
-                            <input type="text" name="location" class="form-control" placeholder="Any location outside of:"><br>
-                    
+                            <input type="text" name="location" class="form-control"
+                                placeholder="Any location outside of:"><br>
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="unusual_time">
                                 Unusual time
                             </label>
                             <input type="text" name="time" class="form-control" placeholder="Transactions during:"><br>
-                    
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="unusual_amount">
                                 Unusual amount
                             </label>
                             <input type="text" name="amount" class="form-control" placeholder="Transactions above:"><br>
-                    
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="multiple_transactions">
                                 Multiple transactions in a short time
                             </label>
-                            <input type="text" name="time_interval" class="form-control" placeholder="Allowed time interval:"><br>
-                    
+                            <input type="text" name="time_interval" class="form-control"
+                                placeholder="Allowed time interval:"><br>
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="unusual_ip">
                                 Unusual IP address
                             </label>
-                            <input type="text" name="ip_address" class="form-control" placeholder="Any IP address outside of:"><br>
-                    
+                            <input type="text" name="ip_address" class="form-control"
+                                placeholder="Any IP address outside of:"><br>
+
                             <label>
                                 <input type="checkbox" name="rule[]" value="geographical_inconsistency">
                                 Geographical Inconsistency
                             </label>
                         </fieldset>
-                    
+
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </form>
                     <!-- <form action="/rules/v1/" method="post">
