@@ -26,3 +26,11 @@
   overflow-y: auto;
 }
 /* for the chart page */
+/* for the Help page */
+.left-aligned-text {
+  text-align: left;
+}
+.center-aligned-text {
+  text-align: center;
+}
+/* for the Help page */
