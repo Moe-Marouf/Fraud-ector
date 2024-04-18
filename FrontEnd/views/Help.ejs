@@ -257,19 +257,23 @@
                             <div class="col-md-8">
                                 <div class="bg-secondary rounded h-100 p-4">
                                     <h6 class="mb-4 display-5">Contact us</h6>
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                    <div class="alert alert-primary alert-dismissible fade show" id="hiddenDiv" style="display: none;" role="alert">
+                                        <i class="fa me-2">Email Sended</i>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInput" placeholder="Name">
-                                        <label for="floatingInput">Name</label>
+                                        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                                        <label for="emailInput">Email address</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                                        <label for="nameInput">Name</label>
                                     </div>
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"></textarea>
-                                        <label for="floatingTextarea">Comments</label>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="commentInput" style="height: 150px;"></textarea>
+                                        <label for="commentInput">Comments</label>
                                     </div>
-                                    <button type="button" class="btn btn-lg btn-primary m-2">Send</button>
+                                    <button type="button" class="btn btn-lg btn-primary m-2" id="showButton">Send</button>
                                 </div>
                             </div>
                         </div>
@@ -310,6 +314,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
+    <script src="/js/Help.js"></script>
 </body>
 
 </html>
