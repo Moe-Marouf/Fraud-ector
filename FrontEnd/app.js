@@ -63,3 +63,18 @@ mongoose
 app.listen(process.env.PORT, () => {
   console.log(`Listening on Port ${process.env.PORT}`);
 });
+
+//FLASK:
+
+const axios = require('axios');
+async function makePrediction(features) {
+  try {
+      const response = await axios.post('http://localhost:5000/predict', {
+          features: features
+      });
+      console.log('Prediction:', response.data);
+  } catch (error) {
+      console.error('Error making prediction:', error);
+  }
+}
+makePrediction([[-100, -100]]);
