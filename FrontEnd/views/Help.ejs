@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fraudector</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/code.css">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="/home/v1/" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"></i>Fraudector</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/home/v1/" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/transactionhistory/v1/" class="nav-item nav-link"><i
+                            class="fa fa-th me-2"></i>Transactions</a>
+                    <a href="/charts/v1/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts &
+                        Reports</a>
+                    <a href="/transactionhistory2/v1/" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Customize Rules</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notification</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="/image/user.png" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">User</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="/login/v1/" class="dropdown-item">Log-out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+            <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+
+                    <h1 class="display-1">HOW IT WORKS!</h1>
+                    <div class="p-2 mb-2 bg-secondary text-white">Learn More about how our website works</div>
+                    <div class="bg-secondary rounded h-100 p-4">
+
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item bg-transparent">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        How to Access the Dashboard?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <h6 class="mb-4 display-3">How to Access the Dashboard?</h6>
+                                        <ul class="list-group list-group-flush left-aligned-text">
+                                            <li class="list-group-item bg-transparent">
+                                                <h>1. Open The Dashboard Page:</h>
+                                                <ul>
+                                                    <li>On the left access the sidebar.</li>
+                                                    <li>Click on the "Dashboard" option to access the dashboard page.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>2. View The Dashboard Information:</h>
+                                                <p>The system will display the dashboard page with key information like:
+                                                </p>
+                                                <ul>
+                                                    <li>Online Status</li>
+                                                    <li>Last 5 Transaction History</li>
+                                                    <li>Total Transactions</li>
+                                                    <li>Total Fraud Transactions</li>
+                                                    <li>And more...</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-transparent ">
+                                <h2 class="accordion-header " id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        How to find old transaction history?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+
+                                        <h6 class="mb-4 display-3">How to find old transaction history?</h6>
+                                        <ul class="list-group list-group-flush left-aligned-text">
+                                            <li class="list-group-item bg-transparent">
+                                                <h>1. Navigate to the Transaction Page:</h>
+                                                <ul>
+                                                    <li>On the left access the sidebar.</li>
+                                                    <li>Click on the "Transaction" option to access the transaction
+                                                        page.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>2. Select a Date:</h>
+                                                <ul>
+                                                    <li>On the transaction page, locate and click on the calendar icon.
+                                                    </li>
+                                                    <li>Pick a specific day from the calendar.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>3. View Transactions for Selected Day:</h>
+                                                <ul>
+                                                    <li>After selecting the day, the system will display all
+                                                        transactions made on that day.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>4. Filter Transactions:</h>
+                                                <ul>
+                                                    <li>Locate the filter options on top the transaction page.</li>
+                                                    <li>Enter specific criteria:
+                                                        <ul>
+                                                            <li>Transaction ID</li>
+                                                            <li>Sender ID</li>
+                                                            <li>Amount</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-transparent">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        How to Customize Rules?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <h6 class="mb-4 display-3">How to Customize Rules?</h6>
+                                        <ul class="list-group list-group-flush left-aligned-text">
+                                            <li class="list-group-item bg-transparent">
+                                                <h>1. Open The Customize Rules Page:</h>
+                                                <ul>
+                                                    <li>On the left access the sidebar.</li>
+                                                    <li>Click on the "Customize Rules" option to open the customize
+                                                        rules page.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>2. View Available Rules:</h>
+                                                <ul>
+                                                    <li>The page will display many rules to choose from.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>3. Pick and Customize Rules:</h>
+                                                <ul>
+                                                    <li>Select one or multiple rules to customize.</li>
+                                                    <li>Add additional information to each selected rule.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>4. Submit Your Customized Rules:</h>
+                                                <ul>
+                                                    <li>After selecting and customizing your rules, click on the
+                                                        "Submit" button.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-transparent">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                        aria-controls="flush-collapseFour">
+                                        How to View Charts and Reports?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <h6 class="mb-4 display-3">How to View Charts and Reports?</h6>
+                                        <ul class="list-group list-group-flush left-aligned-text">
+                                            <li class="list-group-item bg-transparent">
+                                                <h>1. Open Charts and Reports Page:</h>
+                                                <ul>
+                                                    <li>On the left access the sidebar.</li>
+                                                    <li>Click on the "Charts and Reports" option to open the charts and
+                                                        reports page.</li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>2. View Available Charts and Reports:</h>
+                                                <ul>
+                                                    <li>The page will display various charts and a report with data.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item bg-transparent">
+                                                <h>3. Scroll to See All Information:</h>
+                                                <ul>
+                                                    <li>Scroll through the page to view all the charts and detailed
+                                                        report information.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-5">
+                        <div class="row justify-content-center">
+                            <!-- Form in the middle -->
+                            <div class="col-md-8">
+                                <div class="bg-secondary rounded h-100 p-4">
+                                    <h6 class="mb-4 display-5">Contact us</h6>
+                                    <div class="alert alert-primary alert-dismissible fade show" id="hiddenDiv"
+                                        style="display: none;" role="alert">
+                                        <i class="fa me-2">Email Sent</i>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="emailInput"
+                                            placeholder="name@example.com">
+                                        <label for="emailInput">Email address</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                                        <label for="nameInput">Name</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Leave a comment here"
+                                            id="commentInput" style="height: 150px;"></textarea>
+                                        <label for="commentInput">Comments</label>
+                                    </div>
+                                    <button type="button" class="btn btn-lg btn-primary m-2"
+                                        id="showButton">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Fraudector</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <a href="/Help/v1/">Help!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/Help.js"></script>
+</body>
+
+</html>
