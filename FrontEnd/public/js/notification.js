@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to generate a random number
     function getRandomNumber() {
-        return Math.floor(Math.random() * 1000); // Generate a random number between 0 and 99
+        return Math.floor(Math.random() * 1000); // Generate a random number between 0 and 999
     }
 
     // Function to show the popup with a random number
