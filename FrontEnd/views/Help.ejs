@@ -18,6 +18,7 @@
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -295,23 +296,22 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input type="email" class="form-control" id="emailInput"
-                                            placeholder="name@example.com">
+                                            placeholder="name@example.com" required>
                                         <label for="emailInput">Email address</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                                        <input type="text" class="form-control" id="nameInput" placeholder="Name" required>
                                         <label for="nameInput">Name</label>
                                     </div>
                                     <div class="form-floating">
                                         <textarea class="form-control" placeholder="Leave a comment here"
-                                            id="commentInput" style="height: 150px;"></textarea>
+                                            id="commentInput" style="height: 150px;" required></textarea>
                                         <label for="commentInput">Comments</label>
                                     </div>
                                     <button type="button" class="btn btn-lg btn-primary m-2"
                                         id="showButton">Send</button>
                                 </div>
                             </div>
-                        </div>
                     </div>
 
 
