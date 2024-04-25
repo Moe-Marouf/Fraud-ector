@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     const popup = document.getElementById('popup');
 
-    // Function to generate a random number
+    
     function getRandomNumber() {
-        return Math.floor(Math.random() * 1000); // Generate a random number between 0 and 999
+        return Math.floor(Math.random() * 1000);
     }
 
-    // Function to show the popup with a random number
+    // Function to show the popup
     function showPopup() {
         const randomNumber = getRandomNumber();
         const randomNumberElement = document.getElementById('randomNumber');
@@ -19,6 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 3000);
     }
 
-    // Initial delay before showing the first popup (10 seconds)
+    // Initial delay before showing the first popup (5 seconds)
     setTimeout(showPopup, 5000);
 });
