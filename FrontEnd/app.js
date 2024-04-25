@@ -56,7 +56,7 @@ app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
       console.log("Connected to MongoDB");
 
       const db = mongoose.connection;
-      const collection = db.collection("yourcollectionname"); // Specify your MongoDB collection name
+      const collection = db.collection("transactions"); // Specify your MongoDB collection name
 
       // Parse uploaded CSV file
       const parser = csv({ delimiter: "," })
