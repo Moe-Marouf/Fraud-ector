@@ -2,6 +2,11 @@ const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+// New code
+const multer = require("multer");
+const csv = require("csv-parse");
+const fs = require("fs");
+const path = require("path");
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -13,6 +18,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
+
+// New code
+const upload = multer({ dest: "uploads/" });
 
 // Routes
 app.get("/", (req, res) => {
@@ -33,6 +41,44 @@ app.get("/rules/v1/", (req, res) => {
 
 app.get("/add/v1/", (req, res) => {
   res.render("add");
+});
+
+// New code
+app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).send("No file uploaded");
+  }
+
+  // MongoDB connection
+  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log("Connected to MongoDB");
+
+      const db = mongoose.connection;
+      const collection = db.collection("yourcollectionname"); // Specify your MongoDB collection name
+
+      // Parse uploaded CSV file
+      const parser = csv({ delimiter: "," })
+        .on("data", (row) => {
+          // Insert row into MongoDB collection
+          collection.insertOne({ data: row }, (err, result) => {
+            if (err) throw err;
+            console.log("Inserted row into MongoDB");
+          });
+        })
+        .on("end", () => {
+          res.send("CSV data uploaded and saved to MongoDB");
+          db.close(); // Close MongoDB connection after insertion
+        });
+
+      // Read and parse uploaded CSV file
+      fs.createReadStream(file.path).pipe(parser);
+    })
+    .catch((error) => {
+      console.log("Error connecting to MongoDB:", error);
+      res.status(500).send("Error connecting to MongoDB");
+    });
 });
 
 app.get("/transactionhistory/v1/", (req, res) => {
