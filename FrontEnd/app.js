@@ -31,6 +31,10 @@ app.get("/rules/v1/", (req, res) => {
   res.render("rules");
 });
 
+app.get("/add/v1/", (req, res) => {
+  res.render("add");
+});
+
 app.get("/transactionhistory/v1/", (req, res) => {
   res.render("transactionhistory");
 });

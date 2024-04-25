@@ -90,8 +90,12 @@
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                
+                <div class="bg-secondary rounded p-4">
+                    <h1>Upload CSV to MongoDB</h1>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="csvfile" accept=".csv" required>
+                    <button type="submit">Upload</button>
+                    </form>
                 </div>
             </div>
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
