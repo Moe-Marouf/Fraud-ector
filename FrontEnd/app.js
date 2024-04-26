@@ -68,8 +68,8 @@ app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
           });
         })
         .on("end", () => {
-          res.send("CSV data uploaded and saved to MongoDB");
           db.close(); // Close MongoDB connection after insertion
+          res.redirect("/add/v1/");
         });
 
       // Read and parse uploaded CSV file
