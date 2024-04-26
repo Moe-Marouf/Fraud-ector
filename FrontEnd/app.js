@@ -10,6 +10,7 @@ const path = require("path");
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
+const Comment = require("./models/comment");
 
 const app = express();
 
@@ -50,7 +51,8 @@ app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
     return res.status(400).send("No file uploaded");
   }
 
-//sendComment
+
+// Handle comment submission
 app.post("/sendComment", async (req, res) => {
   const { email, name, comment } = req.body;
 
@@ -69,6 +71,26 @@ app.post("/sendComment", async (req, res) => {
     res.status(500).json({ error: "An error occurred while saving the comment." });
   }
 });
+
+app.post("/sendComment", async (req, res) => {
+  const { email, name, comment } = req.body;
+
+  // Perform filtering logic here
+  if (email && name && comment) {
+    try {
+      const newComment = new Comment({ email, name, comment });
+      await newComment.save();
+      console.log("Comment saved to MongoDB");
+      res.status(201).json({ message: "Comment saved successfully!" });
+    } catch (error) {
+      console.error("Error saving comment to MongoDB:", error);
+      res.status(500).json({ error: "An error occurred while saving the comment." });
+    }
+  } else {
+    res.status(400).json({ error: "Please provide email, name, and comment" });
+  }
+});
+
 
 
 

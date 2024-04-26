@@ -1,33 +1,3 @@
-
-//comment down 
-function sendComment(email, name, comment) {
-    let emailbody = `
-        <h2>New Comment from ${name}</h2>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Comment:</strong> ${comment}</p>
-    `;
-
-    Email.send({
-        SecureToken: "4b7b9470-ec71-48df-862a-5e4efb77af8a",
-        To: "218110207@psu.edu.sa",
-        From: "UserOfFraudector@outlook.com",
-        Subject: "New Comment",
-        Body: emailbody,
-    }).then(
-        message => {
-            console.log("Email send response:", message);
-            if (message !== "OK") {
-                alert("An error occurred while sending the comment. Please try again later.");
-            } else {
-                alert("Comment sent successfully!");
-            }
-        }
-    ).catch(error => {
-        console.error("Error sending comment:", error);
-        alert("An error occurred while sending the comment. Please try again later.");
-    });
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     const showButton = document.getElementById("showButton");
 
@@ -38,7 +8,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Validate email, name, and comment before sending
         if (email && name && comment) {
-            sendComment(email, name, comment);
+            fetch('/sendComment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, name, comment }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Comment sent successfully!");
+                    // Optionally, you can clear the form fields after successful submission
+                    document.getElementById("emailInput").value = "";
+                    document.getElementById("nameInput").value = "";
+                    document.getElementById("commentInput").value = "";
+                } else {
+                    throw new Error('Failed to send comment');
+                }
+            })
+            .catch(error => {
+                console.error("Error sending comment:", error);
+                alert("An error occurred while sending the comment. Please try again later.");
+            });
         } else {
             alert("Please fill in all fields before sending.");
         }
