@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // New code
 const multer = require("multer");
-const csv = require("csv-parse");
+const csv = require("csv-parser");
 const fs = require("fs");
 const path = require("path");
 
@@ -57,7 +57,7 @@ app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
 
       const db = mongoose.connection;
       const collection = db.collection("transactions"); // Specify your MongoDB collection name
-3
+
       // Parse uploaded CSV file
       const parser = csv({ delimiter: "," })
         .on("data", (row) => {
