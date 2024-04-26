@@ -52,48 +52,6 @@ app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
   }
 
 
-// Handle comment submission
-app.post("/sendComment", async (req, res) => {
-  const { email, name, comment } = req.body;
-
-  if (!email || !name || !comment) {
-    return res.status(400).json({ error: "Please provide email, name, and comment" });
-  }
-
-  try {
-    // Create a new Comment document and save it to the database
-    const newComment = new Comment({ email, name, comment });
-    await newComment.save();
-    console.log("Comment saved to MongoDB");
-    res.status(201).json({ message: "Comment saved successfully!" });
-  } catch (error) {
-    console.error("Error saving comment to MongoDB:", error);
-    res.status(500).json({ error: "An error occurred while saving the comment." });
-  }
-});
-
-app.post("/sendComment", async (req, res) => {
-  const { email, name, comment } = req.body;
-
-  // Perform filtering logic here
-  if (email && name && comment) {
-    try {
-      const newComment = new Comment({ email, name, comment });
-      await newComment.save();
-      console.log("Comment saved to MongoDB");
-      res.status(201).json({ message: "Comment saved successfully!" });
-    } catch (error) {
-      console.error("Error saving comment to MongoDB:", error);
-      res.status(500).json({ error: "An error occurred while saving the comment." });
-    }
-  } else {
-    res.status(400).json({ error: "Please provide email, name, and comment" });
-  }
-});
-
-
-
-
   // MongoDB connection
   mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -123,6 +81,25 @@ app.post("/sendComment", async (req, res) => {
       console.log("Error connecting to MongoDB:", error);
       res.status(500).send("Error connecting to MongoDB");
     });
+});
+
+// Handle comment submissions
+app.post("/sendComment", async (req, res) => {
+  const { email, name, comment } = req.body;
+
+  if (!email || !name || !comment) {
+    return res.status(400).json({ error: "Please provide email, name, and comment" });
+  }
+
+  try {
+    const newComment = new Comment({ email, name, comment });
+    await newComment.save();
+    console.log("Comment saved to MongoDB");
+    res.status(201).json({ message: "Comment saved successfully!" });
+  } catch (error) {
+    console.error("Error saving comment to MongoDB:", error);
+    res.status(500).json({ error: "An error occurred while saving the comment." });
+  }
 });
 
 app.get("/transactionhistory/v1/", (req, res) => {
