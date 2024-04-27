@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const transactionSchema = new mongoose.Schema({
+  step: {
+    type: Number,
+    required: true,
+  },
   type: {
     type: String,
     required: true,

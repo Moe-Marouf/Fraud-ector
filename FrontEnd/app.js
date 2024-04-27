@@ -44,43 +44,59 @@ app.get("/add/v1/", (req, res) => {
   res.render("add");
 });
 
-// New code
-app.post("/uploadCSV", upload.single("csvfile"), (req, res) => {
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Initialize MongoDB connection pool
+const db = mongoose.connection;
+
+// Event handlers for MongoDB connection
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
+
+app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   const file = req.file;
   if (!file) {
     return res.status(400).send("No file uploaded");
   }
 
+  // Create model for transactions
+  const Transaction = mongoose.model("Transaction", new mongoose.Schema({ data: Object }));
 
-  // MongoDB connection
-  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-      console.log("Connected to MongoDB");
+  // Parse uploaded CSV file
+  const parser = fs.createReadStream(file.path)
+    .pipe(csv({ delimiter: "," }));
 
-      const db = mongoose.connection;
-      const collection = db.collection("transactions"); // Specify your MongoDB collection name
+  let rowCount = 0;
 
-      // Parse uploaded CSV file
-      const parser = csv({ delimiter: "," })
-        .on("data", (row) => {
-          // Insert row into MongoDB collection
-          collection.insertOne({ data: row }, (err, result) => {
-            if (err) throw err;
-            console.log("Inserted row into MongoDB");
-          });
-        })
-        .on("end", () => {
-          db.close(); // Close MongoDB connection after insertion
-          res.redirect("/add/v1/");
-        });
+  parser.on("data", async (row) => {
+    rowCount++;
+    console.log(`Processing row ${rowCount}:`, row);
 
-      // Read and parse uploaded CSV file
-      fs.createReadStream(file.path).pipe(parser);
-    })
-    .catch((error) => {
-      console.log("Error connecting to MongoDB:", error);
-      res.status(500).send("Error connecting to MongoDB");
-    });
+    try {
+      // Insert row into MongoDB collection
+      await Transaction.create({ data: row });
+      console.log("Inserted row into MongoDB");
+    } catch (err) {
+      console.error("Error inserting row into MongoDB:", err);
+    }
+  });
+
+  parser.on("end", () => {
+    console.log("CSV data uploaded and saved to MongoDB");
+    console.log(`Total rows processed: ${rowCount}`);
+    // Redirect user to success.html after successful upload
+    res.redirect("/add/v1/");
+  });
+
+  parser.on("error", (err) => {
+    console.error("Error parsing CSV:", err);
+    res.status(500).send("Error parsing CSV");
+  });
 });
 
 // Handle comment submissions
