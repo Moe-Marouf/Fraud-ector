@@ -17,18 +17,8 @@
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
-    <link rel="stylesheet" href="/css/notification.css">
 </head>
 <body>
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <p>ATTENTION!</p>
-            <p>The transaction with the following ID was found fraud: </p>
-            <p class="random-number" id="randomNumber"></p>
-        </div>
-    </div>
-    
-    <script src="/js/notification.js"></script>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -75,9 +65,14 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notifications</span>
+                            <span class="d-none d-lg-inline-flex">Notification</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
                             <a href="/notifications/v1/" class="dropdown-item text-center">See all notifications</a>
                         </div>
                     </div>
@@ -135,17 +130,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                        
-                            <h6 class="mb-0">Connection Status:</h6>  
-                                  <div class="led-green"></div>
-                        
-                </div>
                 <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Transaction History</h6>
+                        <h6 class="mb-0">All notifications</h6>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -160,7 +148,7 @@
                             </thead>
                             <tbody>
                                 <% data.forEach(entry => { %>
-                                    <% if (entry.amount && entry.type && entry.nameOrig && entry.nameDest) { %>
+                                    <% if (entry.amount && entry.type && entry.nameOrig && entry.nameDest && entry.isFraud) { %>
                                         <tr>
                                         <td><%= entry.type %></td>
                                         <td><%= entry.amount %></td>

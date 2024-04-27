@@ -69,15 +69,10 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notification</span>
+                            <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                            <a href="/notifications/v1/" class="dropdown-item text-center">See all notifications</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -102,8 +97,8 @@
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                 <i class="fa fa-chart-line fa-3x text-primary"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Today Transaction</p>
-                                    <h6 class="mb-0">{{Today.Transaction}}</h6>
+                                    <p class="mb-2">Transactions Today</p>
+                                    <h6 class="mb-0">176</h6>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +106,8 @@
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Total Transaction</p>
-                                    <h6 class="mb-0" id="total-transaction"></h6>
+                                    <p class="mb-2">Total Transactions</p>
+                                    <h6 class="mb-0">251,683</h6>
                                 </div>
                             </div>
                         </div>
@@ -120,8 +115,8 @@
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                                 <i class="fa fa-chart-line fa-3x text-primary"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Today Fraud</p>
-                                    <h6 class="mb-0">{{Today.Fraud}}</h6>
+                                    <p class="mb-2">Fraud Today</p>
+                                    <h6 class="mb-0">11</h6>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +125,7 @@
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Total Fraud</p>
-                                    <h6 id="total-fraud" class="mb-0">0</h6>
+                                    <h6 class="mb-0">2,310</h6>
                                 </div>
                             </div>
                         </div>

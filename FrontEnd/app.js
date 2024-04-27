@@ -136,6 +136,20 @@ app.get("/charts/v1/", (req, res) => {
 app.get("/Help/v1/", (req, res) => {
   res.render("Help");
 });
+
+app.get("/notifications/v1/", async (req, res) => {
+  try {
+    // Retrieve data from MongoDB
+    const data = await Transaction.find();
+
+    // Render the dashboard EJS template with the data
+    res.render("notifications", { data });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.use((req, res) => {
   res.status(404).send("<h1>404 Error</h1>");
 });
