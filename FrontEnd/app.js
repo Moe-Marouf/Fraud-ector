@@ -129,12 +129,6 @@ app.get("/transactionhistory/v1/", (req, res) => {
   res.render("transactionhistory");
 });
 
-app.get("/transactionhistory2/v1/", (req, res) => {
-  const selectedDate = req.query.date;
-
-  res.render('transactionhistory2', { selectedDate });
-});
-
 app.get("/charts/v1/", (req, res) => {
   res.render("chart");
 });
