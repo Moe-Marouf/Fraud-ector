@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
         popup.classList.add('show');
         setTimeout(() => {
             popup.classList.remove('show'); // Hide popup after 3 seconds
-            setTimeout(showPopup, 5000); // Show new popup after 5 seconds
+            setTimeout(showPopup, 30000); // Show new popup after 5 seconds
         }, 3000);
     }
 
     // Initial delay before showing the first popup (5 seconds)
-    setTimeout(showPopup, 5000);
+    setTimeout(showPopup, 10000);
 });
