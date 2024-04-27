@@ -156,63 +156,25 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
-                                    <th scope="col">Transaction</th>
-                                    <th scope="col">Sender ID</th>
-                                    <th scope="col">Recriver ID</th>
-                                    <th scope="col">Transaction Type</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Is Fraud</th>
-                                    <th scope="col">Action</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Name of Origin</th>
+                                    <th>Name of Destination</th>
+                                    <th>Fraud?</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            
-                                <tr>
-                                    <td>{{Transaction.ID}}</td>
-                                    <td>{{Sender.ID}}</td>
-                                    <td>{{Recriver.ID}}</td>
-                                    <td>{{Transaction.Type}}</td>
-                                    <td>{{Transaction.Amount}}</td>
-                                    <td>?</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                             
-                                <tr>
-                                    <td>{{Transaction.ID}}</td>
-                                    <td>{{Sender.ID}}</td>
-                                    <td>{{Recriver.ID}}</td>
-                                    <td>{{Transaction.Type}}</td>
-                                    <td>{{Transaction.Amount}}</td>
-                                    <td>?</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>{{Transaction.ID}}</td>
-                                    <td>{{Sender.ID}}</td>
-                                    <td>{{Recriver.ID}}</td>
-                                    <td>{{Transaction.Type}}</td>
-                                    <td>{{Transaction.Amount}}</td>
-                                    <td>?</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>{{Transaction.ID}}</td>
-                                    <td>{{Sender.ID}}</td>
-                                    <td>{{Recriver.ID}}</td>
-                                    <td>{{Transaction.Type}}</td>
-                                    <td>{{Transaction.Amount}}</td>
-                                    <td>?</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>{{Transaction.ID}}</td>
-                                    <td>{{Sender.ID}}</td>
-                                    <td>{{Recriver.ID}}</td>
-                                    <td>{{Transaction.Type}}</td>
-                                    <td>{{Transaction.Amount}}</td>
-                                    <td>?</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
+                                <% data.forEach(entry => { %>
+                                    <% if (entry.amount && entry.type && entry.nameOrig && entry.nameDest) { %>
+                                        <tr>
+                                        <td><%= entry.type %></td>
+                                        <td><%= entry.amount %></td>
+                                        <td><%= entry.nameOrig %></td>
+                                        <td><%= entry.nameDest %></td>
+                                        <td><%= entry.isFraud %></td>
+                                        </tr>
+                                    <% } %>
+                                <% }); %>
                             </tbody>
                         </table>
                     </div>

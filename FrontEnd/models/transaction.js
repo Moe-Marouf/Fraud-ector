@@ -13,7 +13,7 @@ const transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  nameOrg: {
+  nameOrig: {
     type: String,
     required: true,
   },
@@ -21,7 +21,7 @@ const transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  newBalanceOrg: {
+  newBalanceOrig: {
     type: Number,
     required: true,
   },
