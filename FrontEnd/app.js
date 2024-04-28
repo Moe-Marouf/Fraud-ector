@@ -128,6 +128,9 @@ app.post("/sendComment", async (req, res) => {
 app.get("/transactionhistory/v1/", (req, res) => {
   res.render("transactionhistory");
 });
+app.get("/transaction/v1/", (req, res) => {
+  res.render("transaction");
+});
 
 app.get("/charts/v1/", (req, res) => {
   res.render("chart");
