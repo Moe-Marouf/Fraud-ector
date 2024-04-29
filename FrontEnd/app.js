@@ -10,6 +10,7 @@ const path = require("path");
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
 const Comment = require("./models/comment");
+const Login = require("./models/login"); 
 
 const app = express();
 
@@ -185,6 +186,27 @@ mongoose
 // app.listen(process.env.PORT, () => {
 //   console.log(`Listening on Port ${process.env.PORT}`);
 // });
+
+//login
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  if (await authenticateUser(email, password)) {
+    res.redirect("/home/v1"); // Redirect to the home page upon successful login
+  } else {
+    res.status(401).send("Invalid email or password"); // Send error message if authentication fails
+  }
+});
+async function authenticateUser(email, password) {
+  try {
+      const user = await Login.findOne({ email, password });
+      return !!user; // Return true if user exists, false otherwise
+  } catch (error) {
+      console.error("Error authenticating user:", error);
+      return false;
+  }
+}
+
+
 
 //FLASK:
 

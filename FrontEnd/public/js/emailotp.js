@@ -1,18 +1,17 @@
 let savedOTP = null;
 
-
 function sendOTP() {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
     // Dummy validation for email and password (replace with your own validation logic)
-    if (!validateEmail(email.value) || !validatePassword(password.value)) {
+    if (!validateEmail(email) || !validatePassword(password)) {
         alert("Please enter a valid email and password.");
         return;
     }
 
     // Dummy authentication check for email and password (replace with your own authentication logic)
-    if (!authenticateUser(email.value, password.value)) {
+    if (!authenticateUser(email, password)) {
         alert("Incorrect email or password. Please try again.");
         return;
     }
@@ -21,15 +20,13 @@ function sendOTP() {
     savedOTP = generateOTP();
 
     // Send OTP via email
-    sendEmailOTP(email.value, savedOTP);
+    sendEmailOTP(email, savedOTP);
 
     sessionStorage.setItem('savedOTP', savedOTP);
 
     alert("Sent OTP");
     countdown(2, 1);
 }
-
-
 
 function verifyOTP() {
     const email = document.getElementById('email').value;
@@ -60,29 +57,10 @@ function generateOTP() {
 
 // Function to send OTP via email
 function sendEmailOTP(email, otp) {
+    // Dummy implementation - Replace this with your actual code to send OTP via email
     let emailbody = `<h2>Your OTP is </h2>${otp}`;
-    Email.send({
-        SecureToken: "4b7b9470-ec71-48df-862a-5e4efb77af8a",
-        To: email,
-        From: "UserOfFraudector@outlook.com",
-        Subject: "OTP",
-        Body: emailbody,
-    }).then(
-        message => {
-            console.log("Email send response:", message);
-            if (message !== "OK") {
-                alert("An error occurred while sending OTP. Please try again later.");
-            }
-        }
-    ).catch(error => {
-        console.error("Error sending OTP:", error);
-        alert("An error occurred while sending OTP. Please try again later.");
-    });
+    console.log("Sending OTP via email:", emailbody);
 }
-
-
-
-
 
 // Function to validate email format
 function validateEmail(email) {
@@ -95,11 +73,11 @@ function validatePassword(password) {
     return password.length >= 1; // Minimum 8 characters
 }
 
+// Dummy user data for authentication (replace with your own user data and authentication logic)
 const users = [
-    { email: "218110207@psu.edu.sa", password: "1" },
-    { email: "220110431@psu.edu.sa", password: "1" },
-    { email: "220110081@psu.edu.sa", password: "1" },
-    { email: "218110172@psu.edu.sa", password: "1" },
+    { email: "example1@example.com", password: "password1" },
+    { email: "example2@example.com", password: "password2" },
+    // Add more users as needed
 ];
 
 // Dummy function to authenticate user (replace with your own authentication logic)
