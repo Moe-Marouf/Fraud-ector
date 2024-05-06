@@ -47,10 +47,6 @@ db.once("open", () => {
 // Initialize multer for file uploads
 const upload = multer({ dest: 'uploads/' });
 
-// Routes
-app.get("/", (req, res) => {
-  res.redirect("/login/v1/");
-});
 // Home route
 app.get("/home/v1/", async (req, res) => {
   // Check if user is authenticated
@@ -69,7 +65,6 @@ app.get("/home/v1/", async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
-
 // Login route
 app.get("/login/v1/", (req, res) => {
   res.render("login");
