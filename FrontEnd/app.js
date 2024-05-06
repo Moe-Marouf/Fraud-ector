@@ -47,103 +47,64 @@ db.once("open", () => {
 // Initialize multer for file uploads
 const upload = multer({ dest: 'uploads/' });
 
-// Home route
-app.get("/home/v1/", async (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  try {
-      // Retrieve data from MongoDB
-      const data = await Transaction.find();
 
-      // Render the dashboard EJS template with the data
-      res.render("dashboard", { data });
+// Routes
+app.get("/", (req, res) => {
+  res.redirect("/login/v1/");
+});
+
+app.get("/home/v1/", async (req, res) => {
+  try {
+    // Retrieve data from MongoDB
+    const data = await Transaction.find();
+
+    // Render the dashboard EJS template with the data
+    res.render("dashboard", { data });
   } catch (error) {
-      console.error('Error fetching data:', error);
-      res.status(500).send('Internal Server Error');
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
-// Login route
+
 app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-// Rules route
 app.get("/rules/v1/", (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  // Render the rules page
   res.render("rules");
 });
 
-// Add route
 app.get("/add/v1/", (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  // Render the add page
   res.render("add");
 });
-
-// Transaction route
+app.get("/transactionhistory/v1/", (req, res) => {
+  res.render("transactionhistory");
+});
 app.get("/transaction/v1/", (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  // Render the transaction page
   res.render("transaction");
 });
 
-// Transaction history route
-app.get("/transactionhistory/v1/", (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  // Render the transaction history page
-  res.render("transactionhistory");
-});
-
-// Charts route
 app.get("/charts/v1/", (req, res) => {
-  // Check if user is authenticated
-  if (!req.session.user) {
-      // Redirect to login page if not authenticated
-      return res.redirect("/login/v1/");
-  }
-  // Render the chart page
   res.render("chart");
 });
 
-// Notifications route
-app.get("/notifications/v1/", async (req, res) => {
-    // Check if user is authenticated
-    if (!req.session.user) {
-        // Redirect to login page if not authenticated
-        return res.redirect("/login/v1/");
-    }
-    try {
-        // Retrieve data from MongoDB
-        const data = await Transaction.find();
-
-        // Render the notifications page
-        res.render("notifications", { data });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).send('Internal Server Error');
-    }
+app.get("/Help/v1/", (req, res) => {
+  res.render("Help");
 });
 
+app.get("/notifications/v1/", async (req, res) => {
+  try {
+    // Retrieve data from MongoDB
+    const data = await Transaction.find();
+
+    // Render the dashboard EJS template with the data
+    res.render("notifications", { data });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+
+});
 
 // Handle 404 errors
 app.use((req, res) => {
