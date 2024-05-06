@@ -59,7 +59,23 @@ function generateOTP() {
 function sendEmailOTP(email, otp) {
     // Dummy implementation - Replace this with your actual code to send OTP via email
     let emailbody = `<h2>Your OTP is </h2>${otp}`;
-    console.log("Sending OTP via email:", emailbody);
+    Email.send({
+        SecureToken: "4b7b9470-ec71-48df-862a-5e4efb77af8a",
+        To: email,
+        From: "UserOfFraudector@outlook.com",
+        Subject: "OTP",
+        Body: emailbody,
+    }).then(
+        message => {
+            console.log("Email send response:", message);
+            if (message !== "OK") {
+                alert("An error occurred while sending OTP. Please try again later.");
+            }
+        }
+    ).catch(error => {
+        console.error("Error sending OTP:", error);
+        alert("An error occurred while sending OTP. Please try again later.");
+    });
 }
 
 // Function to validate email format
@@ -75,8 +91,10 @@ function validatePassword(password) {
 
 // Dummy user data for authentication (replace with your own user data and authentication logic)
 const users = [
-    { email: "example1@example.com", password: "password1" },
-    { email: "example2@example.com", password: "password2" },
+    { email: "218110207@psu.edu.sa", password: "1" },
+    { email: "220110431@psu.edu.sa", password: "1" },
+    { email: "220110081@psu.edu.sa", password: "1" },
+    { email: "218110172@psu.edu.sa", password: "1" },
     // Add more users as needed
 ];
 
