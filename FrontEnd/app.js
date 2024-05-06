@@ -3,14 +3,13 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const csv = require("csv-parser");
-const fs = require("fs");
 const path = require("path");
+const session = require("express-session");
+const crypto = require('crypto'); // Add this line for generating secret key
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
 const Comment = require("./models/comment");
-const Login = require("./models/login"); 
 
 const app = express();
 
@@ -18,39 +17,18 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Generate a random string of 32 characters for secret key
+const secretKey = crypto.randomBytes(32).toString('hex');
+
+// Add session middleware
+app.use(session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.set("view engine", "ejs");
 
-const upload = multer({ dest: "uploads/" });
-
-// Routes
-app.get("/", (req, res) => {
-  res.redirect("/login/v1/");
-});
-
-app.get("/home/v1/", async (req, res) => {
-  try {
-    // Retrieve data from MongoDB
-    const data = await Transaction.find();
-
-    // Render the dashboard EJS template with the data
-    res.render("dashboard", { data });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-app.get("/login/v1/", (req, res) => {
-  res.render("login");
-});
-
-app.get("/rules/v1/", (req, res) => {
-  res.render("rules");
-});
-
-app.get("/add/v1/", (req, res) => {
-  res.render("add");
-});
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -60,12 +38,120 @@ const db = mongoose.connection;
 
 // Event handlers for MongoDB connection
 db.on("error", (error) => {
-  console.error("MongoDB connection error:", error);
+    console.error("MongoDB connection error:", error);
 });
 db.once("open", () => {
-  console.log("Connected to MongoDB");
+    console.log("Connected to MongoDB");
 });
 
+// Initialize multer for file uploads
+const upload = multer({ dest: 'uploads/' });
+
+// Home route
+app.get("/home/v1/", async (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  try {
+      // Retrieve data from MongoDB
+      const data = await Transaction.find();
+
+      // Render the dashboard EJS template with the data
+      res.render("dashboard", { data });
+  } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+// Login route
+app.get("/login/v1/", (req, res) => {
+  res.render("login");
+});
+
+// Rules route
+app.get("/rules/v1/", (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  // Render the rules page
+  res.render("rules");
+});
+
+// Add route
+app.get("/add/v1/", (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  // Render the add page
+  res.render("add");
+});
+
+// Transaction route
+app.get("/transaction/v1/", (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  // Render the transaction page
+  res.render("transaction");
+});
+
+// Transaction history route
+app.get("/transactionhistory/v1/", (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  // Render the transaction history page
+  res.render("transactionhistory");
+});
+
+// Charts route
+app.get("/charts/v1/", (req, res) => {
+  // Check if user is authenticated
+  if (!req.session.user) {
+      // Redirect to login page if not authenticated
+      return res.redirect("/login/v1/");
+  }
+  // Render the chart page
+  res.render("chart");
+});
+
+// Notifications route
+app.get("/notifications/v1/", async (req, res) => {
+    // Check if user is authenticated
+    if (!req.session.user) {
+        // Redirect to login page if not authenticated
+        return res.redirect("/login/v1/");
+    }
+    try {
+        // Retrieve data from MongoDB
+        const data = await Transaction.find();
+
+        // Render the notifications page
+        res.render("notifications", { data });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+// Handle 404 errors
+app.use((req, res) => {
+  res.status(404).send("<h1>404 Error</h1>");
+});
+
+//send to database
+// Upload CSV route
 app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   const file = req.file;
   if (!file) {
@@ -107,7 +193,7 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
-// Handle comment submissions
+// Send comment route
 app.post("/sendComment", async (req, res) => {
   const { email, name, comment } = req.body;
 
@@ -126,86 +212,12 @@ app.post("/sendComment", async (req, res) => {
   }
 });
 
-app.get("/transactionhistory/v1/", (req, res) => {
-  res.render("transactionhistory");
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-app.get("/transaction/v1/", (req, res) => {
-  res.render("transaction");
-});
-
-app.get("/charts/v1/", (req, res) => {
-  res.render("chart");
-});
-
-app.get("/Help/v1/", (req, res) => {
-  res.render("Help");
-});
-
-app.get("/notifications/v1/", async (req, res) => {
-  try {
-    // Retrieve data from MongoDB
-    const data = await Transaction.find();
-
-    // Render the dashboard EJS template with the data
-    res.render("notifications", { data });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-app.use((req, res) => {
-  res.status(404).send("<h1>404 Error</h1>");
-});
-
-// Connecting Mongoose
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("Connected to MongoDB");
-
-    // Start the server after MongoDB connection is established
-    app.listen(process.env.PORT, () => {
-      console.log(`Listening on Port ${process.env.PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.log("Error connecting to MongoDB:", error);
-  });
-
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => {
-//     console.log("Connected to MongoDB");
-//   })
-//   .catch((error) => {
-//     console.log("Error connecting to MongoDB:", error);
-//   });
-
-// Port
-// app.listen(process.env.PORT, () => {
-//   console.log(`Listening on Port ${process.env.PORT}`);
-// });
-
-//login
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  if (await authenticateUser(email, password)) {
-    res.redirect("/home/v1"); // Redirect to the home page upon successful login
-  } else {
-    res.status(401).send("Invalid email or password"); // Send error message if authentication fails
-  }
-});
-async function authenticateUser(email, password) {
-  try {
-      const user = await Login.findOne({ email, password });
-      return !!user; // Return true if user exists, false otherwise
-  } catch (error) {
-      console.error("Error authenticating user:", error);
-      return false;
-  }
-}
-
 
 
 //FLASK:
