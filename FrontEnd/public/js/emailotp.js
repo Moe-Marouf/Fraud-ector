@@ -1,4 +1,6 @@
 let savedOTP = null;
+const User = require("frontend/models/User"); 
+
 
 function sendOTP() {
     const email = document.getElementById('email').value;
@@ -89,17 +91,16 @@ function validatePassword(password) {
     return password.length >= 1; // Minimum 8 characters
 }
 
-// Dummy user data for authentication (replace with your own user data and authentication logic)
-const users = [
-    { email: "218110207@psu.edu.sa", password: "1" },
-    { email: "220110431@psu.edu.sa", password: "1" },
-    { email: "220110081@psu.edu.sa", password: "1" },
-    { email: "218110172@psu.edu.sa", password: "1" },
-    // Add more users as needed
-];
+async function authenticateUser(email, password) {
+    try {
+        // Find a user with the provided email and password
+        const user = await User.findOne({ email, password }).exec();
 
-// Dummy function to authenticate user (replace with your own authentication logic)
-function authenticateUser(email, password) {
-    // Check if the provided email and password match any user in the array
-    return users.some(user => user.email === email && user.password === password);
+        // If user is found, return true; otherwise, return false
+        return !!user;
+    } catch (error) {
+        console.error("Error authenticating user:", error);
+        return false;
+    }
 }
+
