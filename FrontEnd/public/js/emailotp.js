@@ -1,42 +1,17 @@
 let savedOTP = null;
 
-// Function to set a cookie
-function setCookie(name, value, days) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-}
-
-// Function to get a cookie by name
-function getCookie(name) {
-    const cookieName = `${name}=`;
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(cookieName) === 0) {
-            return cookie.substring(cookieName.length, cookie.length);
-        }
-    }
-    return null;
-}
-
-// Function to send OTP
 function sendOTP() {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
     // Dummy validation for email and password (replace with your own validation logic)
-    if (!validateEmail(email.value) || !validatePassword(password.value)) {
+    if (!validateEmail(email) || !validatePassword(password)) {
         alert("Please enter a valid email and password.");
         return;
     }
 
-    // Call authenticateUser function to check if email and password are valid
-    if (!authenticateUser(email.value, password.value)) {
+    // Dummy authentication check for email and password (replace with your own authentication logic)
+    if (!authenticateUser(email, password)) {
         alert("Incorrect email or password. Please try again.");
         return;
     }
@@ -45,34 +20,28 @@ function sendOTP() {
     savedOTP = generateOTP();
 
     // Send OTP via email
-    sendEmailOTP(email.value, savedOTP);
+    sendEmailOTP(email, savedOTP);
 
-    // Save OTP to cookie
-    setCookie('savedOTP', savedOTP, 1);
-
-    // Save user session to cookie
-    setCookie('userSession', true, 1);
+    sessionStorage.setItem('savedOTP', savedOTP);
 
     alert("Sent OTP");
     countdown(2, 1);
 }
 
-// Function to verify OTP
 function verifyOTP() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const otp_inp = document.getElementById('otp_inp').value;
-    const savedOTP = getCookie('savedOTP');
+    const savedOTP = sessionStorage.getItem('savedOTP');
 
     // Check if savedOTP is null
     if (!savedOTP) {
         alert("OTP not generated. Please generate OTP first.");
         return;
     }
-
     // Check if OTP is correct and not expired
-    if (otp_inp === savedOTP && getCookie('userSession') === 'true') {
-        // Redirect to home page upon successful verification
+    if (otp_inp === savedOTP && authenticateUser(email, password)) {
+        // Redirect to a new page upon successful verification
         window.location.href = "/home/v1/";
     } else if (!authenticateUser(email, password)) {
         alert("Incorrect email or password. Please try again.");
@@ -88,24 +57,9 @@ function generateOTP() {
 
 // Function to send OTP via email
 function sendEmailOTP(email, otp) {
+    // Dummy implementation - Replace this with your actual code to send OTP via email
     let emailbody = `<h2>Your OTP is </h2>${otp}`;
-    Email.send({
-        SecureToken: "4b7b9470-ec71-48df-862a-5e4efb77af8a",
-        To: email,
-        From: "UserOfFraudector@outlook.com",
-        Subject: "OTP",
-        Body: emailbody,
-    }).then(
-        message => {
-            console.log("Email send response:", message);
-            if (message !== "OK") {
-                alert("An error occurred while sending OTP. Please try again later.");
-            }
-        }
-    ).catch(error => {
-        console.error("Error sending OTP:", error);
-        alert("An error occurred while sending OTP. Please try again later.");
-    });
+    console.log("Sending OTP via email:", emailbody);
 }
 
 // Function to validate email format
@@ -119,11 +73,11 @@ function validatePassword(password) {
     return password.length >= 1; // Minimum 8 characters
 }
 
+// Dummy user data for authentication (replace with your own user data and authentication logic)
 const users = [
-    { email: "218110207@psu.edu.sa", password: "1" },
-    { email: "220110431@psu.edu.sa", password: "1" },
-    { email: "220110081@psu.edu.sa", password: "1" },
-    { email: "218110172@psu.edu.sa", password: "1" },
+    { email: "example1@example.com", password: "password1" },
+    { email: "example2@example.com", password: "password2" },
+    // Add more users as needed
 ];
 
 // Dummy function to authenticate user (replace with your own authentication logic)
