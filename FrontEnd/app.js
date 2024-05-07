@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
-const session = require("express-session");
-const crypto = require('crypto'); // Add this line for generating secret key
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -17,15 +15,6 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Generate a random string of 32 characters for secret key
-const secretKey = crypto.randomBytes(32).toString('hex');
-
-// Add session middleware
-app.use(session({
-    secret: secretKey,
-    resave: false,
-    saveUninitialized: false
-}));
 
 app.set("view engine", "ejs");
 
@@ -86,6 +75,25 @@ app.get("/transaction/v1/", (req, res) => {
 
 app.get("/charts/v1/", (req, res) => {
   res.render("chart");
+});
+
+// Send comment route
+app.post("/sendComment", async (req, res) => {
+  const { email, name, comment } = req.body;
+
+  if (!email || !name || !comment) {
+    return res.status(400).json({ error: "Please provide email, name, and comment" });
+  }
+
+  try {
+    const newComment = new Comment({ email, name, comment });
+    await newComment.save();
+    console.log("Comment saved to MongoDB");
+    res.status(201).json({ message: "Comment saved successfully!" });
+  } catch (error) {
+    console.error("Error saving comment to MongoDB:", error);
+    res.status(500).json({ error: "An error occurred while saving the comment." });
+  }
 });
 
 app.get("/Help/v1/", (req, res) => {
@@ -154,24 +162,7 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
-// Send comment route
-app.post("/sendComment", async (req, res) => {
-  const { email, name, comment } = req.body;
 
-  if (!email || !name || !comment) {
-    return res.status(400).json({ error: "Please provide email, name, and comment" });
-  }
-
-  try {
-    const newComment = new Comment({ email, name, comment });
-    await newComment.save();
-    console.log("Comment saved to MongoDB");
-    res.status(201).json({ message: "Comment saved successfully!" });
-  } catch (error) {
-    console.error("Error saving comment to MongoDB:", error);
-    res.status(500).json({ error: "An error occurred while saving the comment." });
-  }
-});
 
 
 // Start the server
