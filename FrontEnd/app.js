@@ -108,7 +108,7 @@ app.get("/notifications/v1/", async (req, res) => {
 
 // Handle 404 errors
 app.use((req, res) => {
-  res.status(404).send("<h1>404 Error</h1>");
+  res.render("404");
 });
 
 //send to database
