@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
+const pdfkit = require("pdfkit");
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -119,7 +120,6 @@ app.use((req, res) => {
   res.render("404");
 });
 
-//send to database
 // Upload CSV route
 app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   const file = req.file;
@@ -162,7 +162,25 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
+app.post("/generate-pdf", (req, res) => {
+  // Retrieve table data from request body
+  const tableData = req.body.tableData;
 
+  // Create PDF document
+  const doc = new pdfkit();
+  doc.pipe(res);
+
+  // Add table data to PDF
+  tableData.forEach(row => {
+      row.forEach(cell => {
+          doc.cell(100, 20, cell, { border: true });
+      });
+      doc.moveDown();
+  });
+
+  // Finalize PDF
+  doc.end();
+});
 
 
 // Start the server
