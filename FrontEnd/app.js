@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
-const pdfkit = require("pdfkit");
+// const pdfkit = require("pdfkit");
+const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -162,24 +164,74 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
-app.post("/generate-pdf", (req, res) => {
-  // Retrieve table data from request body
-  const tableData = req.body.tableData;
+// app.post("/generate-pdf", (req, res) => {
+//   // Retrieve table data from request body
+//   const tableData = req.body.tableData;
 
-  // Create PDF document
-  const doc = new pdfkit();
-  doc.pipe(res);
+//   // Create PDF document
+//   const doc = new pdfkit();
+//   doc.pipe(res);
 
-  // Add table data to PDF
-  tableData.forEach(row => {
-      row.forEach(cell => {
-          doc.cell(100, 20, cell, { border: true });
-      });
-      doc.moveDown();
-  });
+//   // Add table data to PDF
+//   tableData.forEach(row => {
+//       row.forEach(cell => {
+//           doc.cell(100, 20, cell, { border: true });
+//       });
+//       doc.moveDown();
+//   });
 
-  // Finalize PDF
-  doc.end();
+//   // Finalize PDF
+//   doc.end();
+// });
+
+// Function to generate PDF report
+async function generatePDF(htmlContent, outputPath) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    // Set the HTML content of the page
+    await page.setContent(htmlContent);
+
+    // Generate PDF from the HTML content
+    await page.pdf({ path: outputPath, format: 'A4' });
+
+    await browser.close();
+}
+
+// Read the HTML file
+const htmlFilePath = 'chart';
+fs.readFile(htmlFilePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error reading HTML file:', err);
+        return;
+    }
+
+    // Serve the existing HTML page
+    app.get('/', (req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        res.end();
+    });
+
+    // Handle POST request to generate PDF
+    app.post('/generatePDF', (req, res) => {
+        generatePDF(data, 'report.pdf')
+            .then(() => {
+                // Send response indicating success
+                res.status(200).send('PDF generated successfully');
+            })
+            .catch(error => {
+                console.error('Error generating PDF:', error);
+                // Send response indicating failure
+                res.status(500).send('Failed to generate PDF');
+            });
+    });
+
+    // Start the server
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
 });
 
 
