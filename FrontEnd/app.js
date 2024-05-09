@@ -199,7 +199,7 @@ async function generatePDF(htmlContent, outputPath) {
 }
 
 // Read the HTML file
-const htmlFilePath = 'chart';
+const htmlFilePath = '/charts/v1/';
 fs.readFile(htmlFilePath, 'utf8', (err, data) => {
     if (err) {
         console.error('Error reading HTML file:', err);
