@@ -159,6 +159,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- <% if (transactions && transactions.length > 0) { %>
+                                    <% transactions.forEach(transaction => { %>
+                                        <tr>
+                                            <td><%= transaction.type %></td>
+                                            <td><%= transaction.amount %></td>
+                                            <td><%= transaction.nameOrig %></td>
+                                            <td><%= transaction.nameDest %></td>
+                                            <td><%= transaction.isFraud %></td>
+                                        </tr>
+                                        <% }) } else { %>
+                                        <tr>
+                                            <td colspan="5">No data to display</td>
+                                        </tr>
+                                        <% } %> -->
                                 <% data.forEach(entry => { %>
                                     <% if (entry.amount && entry.type && entry.nameOrig && entry.nameDest) { %>
                                         <tr>

@@ -4,9 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
-// const pdfkit = require("pdfkit");
-const puppeteer = require('puppeteer');
-const fs = require('fs');
 const session = require("express-session");
 const crypto = require('crypto'); // Add this line for generating secret key
 
@@ -57,6 +54,7 @@ app.get("/home/v1/", async (req, res) => {
       // Redirect to login page if not authenticated
       return res.redirect("/login/v1/");
   }
+  // res.render('dashboard', {transactions: Transaction});
   try {
       // Retrieve data from MongoDB
       const data = await Transaction.find();
@@ -68,6 +66,7 @@ app.get("/home/v1/", async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
 // Login route
 app.get("/login/v1/", (req, res) => {
   res.render("login");
@@ -127,6 +126,7 @@ app.get("/charts/v1/", (req, res) => {
   // Render the chart page
   res.render("chart");
 });
+
 // Send comment route
 app.post("/sendComment", async (req, res) => {
   const { email, name, comment } = req.body;
@@ -157,7 +157,6 @@ app.get("/Help/v1/", (req, res) => {
   res.render("chart");
 });
 
-
 // Notifications route
 app.get("/notifications/v1/", async (req, res) => {
     // Check if user is authenticated
@@ -176,7 +175,6 @@ app.get("/notifications/v1/", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
 
 // Handle 404 errors
 app.use((req, res) => {
@@ -223,72 +221,6 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
     console.error("Error parsing CSV:", err);
     res.status(500).send("Error parsing CSV");
   });
-});
-
-// app.post("/generate-pdf", (req, res) => {
-//   // Retrieve table data from request body
-//   const tableData = req.body.tableData;
-
-//   // Create PDF document
-//   const doc = new pdfkit();
-//   doc.pipe(res);
-
-//   // Add table data to PDF
-//   tableData.forEach(row => {
-//       row.forEach(cell => {
-//           doc.cell(100, 20, cell, { border: true });
-//       });
-//       doc.moveDown();
-//   });
-
-//   // Finalize PDF
-//   doc.end();
-// });
-
-// Function to generate PDF report
-async function generatePDF(htmlContent, outputPath) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    // Set the HTML content of the page
-    await page.setContent(htmlContent);
-
-    // Generate PDF from the HTML content
-    await page.pdf({ path: outputPath, format: 'A4' });
-
-    await browser.close();
-}
-
-// Read the HTML file
-const htmlFilePath = 'chart';
-fs.readFile(htmlFilePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading HTML file:', err);
-        return;
-    }
-
-    // Serve the existing HTML page
-    app.get('/', (req, res) => {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-
-    // Handle POST request to generate PDF
-    app.post('/generatePDF', (req, res) => {
-        generatePDF(data, 'report.pdf')
-            .then(() => {
-                // Send response indicating success
-                res.status(200).send('PDF generated successfully');
-            })
-            .catch(error => {
-                console.error('Error generating PDF:', error);
-                // Send response indicating failure
-                res.status(500).send('Failed to generate PDF');
-            });
-    });
-
-
 });
 
 // Start the server
