@@ -83,7 +83,7 @@ router.post('/verify-otp', async (req, res) => {
     user.otp = null;
     await user.save();
 
-    res.render("transactionhistory");
+    res.render("chart");
   } catch (error) {
     console.error('Error during OTP verification', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -100,14 +100,60 @@ router.post('/logout', (req, res) => {
     res.redirect('/');
   });
 });
-router.get('/transactionhistory/v1', (req, res) => {
+router.get('/add/v1', (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); // Redirect to login page if user is not authenticated
+    return res.redirect('/'); 
   }
 
-  res.render('transactionhistory'); // Render the home page if user is authenticated
+  res.render('add'); 
+});
+router.get('/chart/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('chart'); 
+});
+router.get('/dashboard/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('dashboard'); 
 });
 
+router.get('/Help/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('Help');  
+});
+router.get('/notifications/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('notifications');  
+});router.get('/rules/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('rules');  
+});router.get('/transaction/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('transaction');  
+});router.get('/transactionHistory/v1', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+
+  res.render('transactionHistory');  
+});
 
 
 module.exports = router;
