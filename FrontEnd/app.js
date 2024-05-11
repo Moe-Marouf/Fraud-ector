@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const PDFDocument = require("pdfkit");
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -164,74 +165,34 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
-// app.post("/generate-pdf", (req, res) => {
-//   // Retrieve table data from request body
-//   const tableData = req.body.tableData;
+// Update the Report Generation Logic to send the PDF as a response
+function generatePDFReport(transactions, res) {
+  const doc = new PDFDocument();
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
+  doc.pipe(res);
 
-//   // Create PDF document
-//   const doc = new pdfkit();
-//   doc.pipe(res);
+  doc.fontSize(18).text("Transaction Report", { align: "center" });
 
-//   // Add table data to PDF
-//   tableData.forEach(row => {
-//       row.forEach(cell => {
-//           doc.cell(100, 20, cell, { border: true });
-//       });
-//       doc.moveDown();
-//   });
+  transactions.forEach((transaction, index) => {
+    doc.fontSize(12).text(`Transaction ${index + 1}: ${transaction.toString()}`);
+  });
 
-//   // Finalize PDF
-//   doc.end();
-// });
-
-// Function to generate PDF report
-async function generatePDF(htmlContent, outputPath) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    // Set the HTML content of the page
-    await page.setContent(htmlContent);
-
-    // Generate PDF from the HTML content
-    await page.pdf({ path: outputPath, format: 'A4' });
-
-    await browser.close();
+  doc.end();
 }
 
-// Read the HTML file
-const htmlFilePath = 'chart';
-fs.readFile(htmlFilePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading HTML file:', err);
-        return;
-    }
+// Update the Route Handler to send the PDF as a response
+app.get("/generateReport", async (req, res) => {
+  try {
+    // Fetch data from the database
+    const transactions = await Transaction.find();
 
-    // Serve the existing HTML page
-    app.get('/', (req, res) => {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-
-    // Handle POST request to generate PDF
-    app.post('/generatePDF', (req, res) => {
-        generatePDF(data, 'report.pdf')
-            .then(() => {
-                // Send response indicating success
-                res.status(200).send('PDF generated successfully');
-            })
-            .catch(error => {
-                console.error('Error generating PDF:', error);
-                // Send response indicating failure
-                res.status(500).send('Failed to generate PDF');
-            });
-    });
-
-    // Start the server
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+    // Generate the PDF report using the fetched data and send it as a response
+    generatePDFReport(transactions, res);
+  } catch (error) {
+    console.error('Error generating report:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
@@ -240,7 +201,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
 
 //FLASK:
 
