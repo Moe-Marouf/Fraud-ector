@@ -4,9 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
-// const pdfkit = require("pdfkit");
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+const fs = require("fs");
 
 const User = require("./models/user");
 const Transaction = require("./models/transaction");
@@ -69,9 +67,11 @@ app.get("/rules/v1/", (req, res) => {
 app.get("/add/v1/", (req, res) => {
   res.render("add");
 });
+
 app.get("/transactionhistory/v1/", (req, res) => {
   res.render("transactionhistory");
 });
+
 app.get("/transaction/v1/", (req, res) => {
   res.render("transaction");
 });
