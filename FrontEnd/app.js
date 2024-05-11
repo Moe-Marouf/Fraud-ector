@@ -165,32 +165,30 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
-// Update the Report Generation Logic to send the PDF as a response
-function generatePDFReport(transactions, res) {
-  const doc = new PDFDocument();
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", "attachment; filename=report.pdf");
-  doc.pipe(res);
-
-  doc.fontSize(18).text("Transaction Report", { align: "center" });
-
-  transactions.forEach((transaction, index) => {
-    doc.fontSize(12).text(`Transaction ${index + 1}: ${transaction.toString()}`);
-  });
-
-  doc.end();
-}
-
-// Update the Route Handler to send the PDF as a response
-app.get("/generateReport", async (req, res) => {
+// Route to handle download request
+app.get("/downloadData", async (req, res) => {
   try {
-    // Fetch data from the database
-    const transactions = await Transaction.find();
+    // Retrieve data from MongoDB
+    const data = await Transaction.find(); // Adjust as per your schema
 
-    // Generate the PDF report using the fetched data and send it as a response
-    generatePDFReport(transactions, res);
+    // Format data as a text file content
+    const formattedData = JSON.stringify(data, null, 2); // Example: Convert to JSON format
+
+    // Write formatted data to a temporary file
+    const tempFilePath = path.join(__dirname, "tempData.txt");
+    fs.writeFileSync(tempFilePath, formattedData);
+
+    // Send the file as a download to the client
+    res.download(tempFilePath, "data.txt", (err) => {
+      // Cleanup: Delete the temporary file after download
+      fs.unlinkSync(tempFilePath);
+      if (err) {
+        console.error("Error sending file:", err);
+        res.status(500).send("Internal Server Error");
+      }
+    });
   } catch (error) {
-    console.error('Error generating report:', error);
+    console.error('Error fetching data:', error);
     res.status(500).send('Internal Server Error');
   }
 });
