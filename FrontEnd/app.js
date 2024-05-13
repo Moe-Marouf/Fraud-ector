@@ -33,11 +33,24 @@ app.use(session({
 }));
 
 
+
+
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Failed to connect to MongoDB', err));
+  
 
 app.use('/', authController);
+
+// Middleware function to set cache control headers
+const setCacheControl = (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+};
+
+// Apply the setCacheControl middleware to all routes
+app.use(setCacheControl);
+
 
 app.get("/", (req, res) => {
   res.redirect("/login/v1/");
@@ -47,7 +60,7 @@ app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-app.get("/home/v1/", (req, res) => {
+app.get("/home/v1/",  (req, res) => {
   if (!req.session.user) {
     return res.redirect('/'); 
   }
