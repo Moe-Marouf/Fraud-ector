@@ -60,11 +60,20 @@ app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-app.get("/home/v1/",  (req, res) => {
+app.get("/home/v1/",  async (req, res) => {
   if (!req.session.user) {
     return res.redirect('/'); 
   }
-  res.render("dashboard");
+  try {
+    // Retrieve data from MongoDB
+    const data = await Transaction.find();
+
+    // Render the dashboard EJS template with the data
+    res.render("dashboard", { data });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
