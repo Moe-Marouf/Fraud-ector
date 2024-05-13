@@ -33,11 +33,24 @@ app.use(session({
 }));
 
 
+
+
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Failed to connect to MongoDB', err));
+  
 
 app.use('/', authController);
+
+// Middleware function to set cache control headers
+const setCacheControl = (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+};
+
+// Apply the setCacheControl middleware to all routes
+app.use(setCacheControl);
+
 
 app.get("/", (req, res) => {
   res.redirect("/login/v1/");
@@ -47,26 +60,44 @@ app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-app.get("/dashboard/v1/", (req, res) => {
+app.get("/home/v1/",  (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("dashboard");
 });
 
 
 app.get("/rules/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("rules");
 });
 
 app.get("/add/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("add");
 });
 app.get("/transactionhistory/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("transactionhistory");
 });
 app.get("/transaction/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("transaction");
 });
 
 app.get("/charts/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("chart");
 });
 
@@ -90,9 +121,15 @@ app.post("/sendComment", async (req, res) => {
 });
 
 app.get("/Help/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("Help");
 });
 app.get("/notifications/v1/", async (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   try {
     // Retrieve data from MongoDB
     const data = await Transaction.find();
@@ -163,10 +200,10 @@ app.post("/generate-pdf", (req, res) => {
 
   // Add table data to PDF
   tableData.forEach(row => {
-      row.forEach(cell => {
-          doc.cell(100, 20, cell, { border: true });
-      });
-      doc.moveDown();
+    row.forEach(cell => {
+      doc.cell(100, 20, cell, { border: true });
+    });
+    doc.moveDown();
   });
 
   // Finalize PDF
@@ -179,7 +216,7 @@ app.post("/generate-pdf", (req, res) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 
 
@@ -197,3 +234,4 @@ async function makePrediction(features) {
   }
 }
 makePrediction([[-100, -100]]);
+makePrediction([[200, 300]]);
