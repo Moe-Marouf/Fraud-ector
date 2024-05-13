@@ -95,62 +95,22 @@
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4">
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row g-4">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Transactions Today</p>
-                                    <h6 class="mb-0">176</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total Transactions</p>
-                                    <h6 class="mb-0">251,683</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Fraud Today</p>
-                                    <h6 class="mb-0">11</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total Fraud</p>
-                                    <h6 class="mb-0">2,310</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid pt-4 px-4">
+                <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">   
+                    <div class="border col-md-6">
                         <div class="bg-secondary text-center rounded p-4">
-                        
-                            <h6 class="mb-0">Connection Status:</h6>  
-                                  <div class="led-green"></div>
-                        
+                            <img src="\image\calendar.png" alt="CSV Icon">
+                            <h1 class=" display-3 text-center">Pick Transaction Date</h1>
                         </div>
-                    </div> 
-                </div>
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
-                        <div class="col-md-6 text-center">
-                            <h1 class="display-1">Pick Transaction Date</h1>
-                            <div class="p-2 mb-2 bg-secondary text-white">Pick a date or range of dates </div>
-                            <input type="text" name="datefilter" value="" />
-                        </div>
-                    </div>
+
+                        <div class="p-2 mb-2 bg-secondary text-white text-center">Pick a date or range of dates.</div>
+                        <div class="bg-secondary rounded h-100 p-4"> 
+                            <div class="bg-secondary rounded text-center h-100 p-4">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <input type="text" name="datefilter" value="" />
+                                        <button type="button" class="btn btn-primary rounded-pill m-2">Continue</button>
+                                    </div>      
+                            </div>                            
+                    </div>  
                 </div>
             </div> 
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
