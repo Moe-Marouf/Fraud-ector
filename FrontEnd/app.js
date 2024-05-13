@@ -47,26 +47,44 @@ app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-app.get("/dashboard/v1/", (req, res) => {
+app.get("/home/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("dashboard");
 });
 
 
 app.get("/rules/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("rules");
 });
 
 app.get("/add/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("add");
 });
 app.get("/transactionhistory/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("transactionhistory");
 });
 app.get("/transaction/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("transaction");
 });
 
 app.get("/charts/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("chart");
 });
 
@@ -90,6 +108,9 @@ app.post("/sendComment", async (req, res) => {
 });
 
 app.get("/Help/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("Help");
 });
 app.get("/notifications/v1/", async (req, res) => {
