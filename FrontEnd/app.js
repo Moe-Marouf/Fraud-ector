@@ -127,6 +127,9 @@ app.get("/Help/v1/", (req, res) => {
   res.render("Help");
 });
 app.get("/notifications/v1/", async (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   try {
     // Retrieve data from MongoDB
     const data = await Transaction.find();
