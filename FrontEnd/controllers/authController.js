@@ -27,11 +27,11 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.render('Tryagain');
     }
 
     if (user.password !== password) {
-      return res.status(401).json({ message: 'Invalid password' });
+      return res.render('Tryagain');
     }
 
     const otp = generateOTP();
@@ -67,17 +67,17 @@ router.post('/verify-otp', async (req, res) => {
 
   try {
     if (!req.session.user) {
-      return res.status(401).json({ message: 'Unauthorized' });
+      return res.render('Tryagain');
     }
 
     if (req.session.user.otp !== otp) {
-      return res.status(401).json({ message: 'Invalid OTP' });
+      return res.render('Tryagain');
     }
 
     const user = await User.findOne({ _id: req.session.user._id });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.render('Tryagain');
     }
 
     user.otp = null;
