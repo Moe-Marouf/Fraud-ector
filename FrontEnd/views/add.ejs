@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Fraudector</title>
@@ -18,10 +19,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
 </head>
+
 <body>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -36,15 +39,17 @@
                     <h3 class="text-primary"></i>Fraudector</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
-                 
+
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="/home/v1/" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="/transactionhistory/v1/" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Transactions</a>
-                    <a href="/charts/v1/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts & Reports</a>
+                    <a href="/transactionhistory/v1/" class="nav-item nav-link"><i
+                            class="fa fa-th me-2"></i>Transactions</a>
+                    <a href="/charts/v1/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts &
+                        Reports</a>
                     <a href="/rules/v1/" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Customize Rules</a>
                     <a href="/add/v1/" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Data Ingestion</a>
-                    <a href="/Help/v1/" class="nav-item nav-link" ><i class="fa fa-laptop me-2"></i>Help!</a>            
+                    <a href="/Help/v1/" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Help!</a>
 
                 </div>
             </nav>
@@ -60,7 +65,7 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-              
+
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -73,8 +78,9 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="/image/user.png" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Uesr</span>
+                            <img class="rounded-circle me-lg-2" src="/image/user.png" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">Settings</a>
@@ -88,27 +94,29 @@
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4">
-                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">   
+                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3 col-xl-8">
                         <div class="bg-secondary text-center rounded p-4">
                             <img src="/image/csv.png" alt="CSV Icon">
-                            <h1 class=" display-3 text-center">Upload Dataset</h1>
+                            <h1 class=" display-3 text-center">Upload Data</h1>
                         </div>
-                        
-                        <div class="p-2 mb-2 bg-secondary text-white text-center">Choose your CSV file and upload it to the database.</div>
-                        <div class="bg-secondary rounded h-100 p-4">   
+
+                        <div class="p-2 mb-2 bg-secondary text-white text-center">Choose your CSV file and upload it to
+                            the database.</div>
+                        <div class="bg-secondary rounded h-100 p-4">
                             <div class="bg-secondary rounded h-100 p-4">
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <form action="/uploadCSV" method="post" enctype="multipart/form-data">
                                         <i class="far fa-file-alt me-2"></i>
-                                        <label  class="form-label" for="csvfile">Select CSV file:</label>
-                                        <input class="form-control form-control-lg bg-dark  " type="file" id="csvfile" name="csvfile" accept=".csv" required>
-                                        <button  class="btn btn-outline-primary w-100 m-2" type="submit">Upload</button>
-                                    </form> 
-                                </div>      
-                            </div>    
-                        </div>    
-                    </div>  
+                                        <label class="form-label" for="csvfile">Select CSV file:</label>
+                                        <input class="form-control form-control-lg bg-dark  " type="file" id="csvfile"
+                                            name="csvfile" accept=".csv" required>
+                                        <button class="btn btn-outline-primary w-100 m-2" type="submit">Upload</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
@@ -117,7 +125,7 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Fraudector</a>, All Right Reserved. 
+                            &copy; <a href="#">Fraudector</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <a href="/Help/v1/">Help!</a>
