@@ -146,6 +146,7 @@
                                     <th>Name of Origin</th>
                                     <th>Name of Destination</th>
                                     <th>Fraud?</th>
+                                    <th>Done</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,6 +158,7 @@
                                         <td><%= entry.nameOrig %></td>
                                         <td><%= entry.nameDest %></td>
                                         <td><%= entry.isFraud %></td>
+                                        <th><button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button></th>
                                         </tr>
                                     <% } %>
                                 <% }); %>
