@@ -76,7 +76,7 @@
               
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="/settings/v1/" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
@@ -90,7 +90,7 @@
                             <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="/Settings/v1" class="dropdown-item">Settings</a>
                             <form action="/logout" method="POST">
                                 <button class="dropdown-item" type="submit">Logout</button>
                             </form>
@@ -99,6 +99,7 @@
                 </div>
             </nav>
             <!-- Navbar End -->
+          
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
             <div class="container-fluid pt-4 px-4 chart-container">
                 <div class="row g-4">
@@ -140,14 +141,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid pt-4 px-4">
+                    <!-- <div class="container-fluid col-xl-2">
                         <div class="bg-secondary text-center rounded p-4">
-                            <h6 class="mb-0">Connection Status:</h6>  
-                            <div class="led-green"></div>
-                        </div>    
-                    </div> 
+                            <img src="/image/Signal.gif" alt="Icon">
+                    </div>------------------->
                     <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
+                        <div class="bg-secondary rounded p-4">
+                            <h6 class="mb-4">Transaction Table:</h6>
                             <div class="table-container">
                                 <table id="transaction-table"
                                     class="table text-start align-middle table-bordered table-hover mb-0">
