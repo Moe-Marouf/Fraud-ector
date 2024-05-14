@@ -25,11 +25,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({
-  secret: sessionSecret,
-  resave: false,
-  saveUninitialized: true
-}));
+// app.use(session({
+//   secret: sessionSecret,
+//   resave: false,
+//   saveUninitialized: true
+// }));
 
 
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -40,13 +40,13 @@ mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true }
 app.use('/', authController);
 
 // Middleware function to set cache control headers
-const setCacheControl = (req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-};
+// const setCacheControl = (req, res, next) => {
+//   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+//   next();
+// };
 
-// Apply the setCacheControl middleware to all routes
-app.use(setCacheControl);
+// // Apply the setCacheControl middleware to all routes
+// app.use(setCacheControl);
 
 
 app.get("/", (req, res) => {
@@ -58,19 +58,10 @@ app.get("/login/v1/", (req, res) => {
 });
 
 app.get("/home/v1/",  async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/'); 
-  }
-  try {
-    // Retrieve data from MongoDB
-    const data = await Transaction.find();
-
-    // Render the dashboard EJS template with the data
-    res.render("dashboard", { data });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/'); 
+  // }
+  res.render('dashboard');
 });
 
 app.get("/Register/v1/", (req, res) => {
@@ -124,19 +115,10 @@ app.get("/Help/v1/", (req, res) => {
 });
 
 app.get("/notifications/v1/", async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/'); 
-  }
-  try {
-    // Retrieve data from MongoDB
-    const data = await Transaction.find();
-
-    // Render the dashboard EJS template with the data
-    res.render("notifications", { data });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/'); 
+  // }
+  res.render('notifications');
 });
 
 // Handle 404 errors

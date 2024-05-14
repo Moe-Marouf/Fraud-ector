@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
     <link rel="stylesheet" href="/css/notification.css">
+    <script src="https://cdn.jsdelivr.net/npm/csv-parser"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <div class="popup" id="popup">
@@ -150,26 +153,15 @@
                             <table id="transaction-table2" class="table text-start align-middle table-bordered table-hover mb-0">
                                 <thead>
                                     <tr class="text-white">
-                                        <th>Type</th>
-                                        <th>Amount</th>
-                                        <th>Name of Origin</th>
-                                        <th>Name of Destination</th>
-                                        <th>Fraud?</th>
+                                        <th scope="col">Number</th>
+                                        <th scope="col">Name of Origin</th>
+                                        <th scope="col">Name of Destination</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Fraud or not</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% data.forEach(entry => { %>
-                                        <% if (entry.amount && entry.type && entry.nameOrig && entry.nameDest) { %>
-                                            <tr>
-                                            <td><%= entry.type %></td>
-                                            <td><%= entry.amount %></td>
-                                            <td><%= entry.nameOrig %></td>
-                                            <td><%= entry.nameDest %></td>
-                                            <td><%= entry.isFraud %></td>
-                                            <th><button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button></th>
-                                            </tr>
-                                        <% } %>
-                                    <% }); %>
+                                    <!-- Table rows will be dynamically generated here -->
                                 </tbody>
                             </table>
                         </div>
