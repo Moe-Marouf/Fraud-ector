@@ -13,6 +13,7 @@ const authController = require('./controllers/authController');
 const User = require('./models/User');
 const Transaction = require('./models/transaction');
 const Comment = require('./models/comment');
+const generatePDF = require('./public/js/reportgeneration'); // Import the function
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -35,7 +36,7 @@ app.use(session({
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Failed to connect to MongoDB', err));
-  
+
 
 app.use('/', authController);
 
@@ -57,74 +58,87 @@ app.get("/login/v1/", (req, res) => {
   res.render("login");
 });
 
-app.get("/home/v1/",  async (req, res) => {
+app.get("/home/v1/", async (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render('dashboard');
 });
 
 app.get("/Register/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("Register");
 });
 
 app.get("/settings/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("settings");
 });
 
 app.get("/rules/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("rules");
 });
 
 app.get("/add/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("add");
 });
 
 app.get("/transactionhistory/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("transactionhistory");
 });
 
 app.get("/transaction/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("transaction");
 });
 
 app.get("/charts/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("chart");
 });
 
 app.get("/Help/v1/", (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render("Help");
 });
 
 app.get("/notifications/v1/", async (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/'); 
+    return res.redirect('/');
   }
   res.render('notifications');
+});
+
+
+app.post("/generate-pdf", (req, res) => {
+  const data = req.body; // Assuming the data is sent in the request body
+
+  generatePDF(data, (err, result) => {
+    if (err) {
+      console.error('Error generating PDF:', err);
+      return res.status(500).send('Failed to generate PDF');
+    }
+    res.send(result);
+  });
 });
 
 // Handle 404 errors
@@ -216,24 +230,24 @@ app.post("/generate-pdf", (req, res) => {
 
 app.post('/searchTransactions', async (req, res) => {
   try {
-      // Retrieve search criteria from request body
-      const { type, amount, nameOrig, isFraud } = req.body;
+    // Retrieve search criteria from request body
+    const { type, amount, nameOrig, isFraud } = req.body;
 
-      // Build the query based on search criteria
-      let query = {};
-      if (type) query.type = type;
-      if (amount) query.amount = amount;
-      if (nameOrig) query.nameOrig = nameOrig;
-      if (isFraud) query.isFraud = isFraud;
+    // Build the query based on search criteria
+    let query = {};
+    if (type) query.type = type;
+    if (amount) query.amount = amount;
+    if (nameOrig) query.nameOrig = nameOrig;
+    if (isFraud) query.isFraud = isFraud;
 
-      // Retrieve data from MongoDB based on the query
-      const filteredTransactions = await Transaction.find(query);
+    // Retrieve data from MongoDB based on the query
+    const filteredTransactions = await Transaction.find(query);
 
-      // Send the filtered data as a response
-      res.json(filteredTransactions);
+    // Send the filtered data as a response
+    res.json(filteredTransactions);
   } catch (error) {
-      console.error('Error filtering transactions:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error filtering transactions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

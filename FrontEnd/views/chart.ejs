@@ -49,7 +49,7 @@
                         Reports</a>
                     <a href="/rules/v1/" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Customize Rules</a>
                     <a href="/add/v1/" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Data Ingestion</a>
-                    <a href="/Help/v1/" class="nav-item nav-link" ><i class="fa fa-laptop me-2"></i>Help!</a>               
+                    <a href="/Help/v1/" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Help!</a>
                 </div>
             </nav>
         </div>
@@ -91,8 +91,8 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
-             <div class="container-fluid pt-4 px-4">
+            <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
+            <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
@@ -131,22 +131,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="row h-100 align-items justify-content-center" >
+                <div class="row h-100 align-items justify-content-center">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3 col-xl-8 ">
                         <div class="bg-secondary text-center rounded p-4">
                             <img src="/image/report.png" alt="report Icon">
                             <h1 class=" display-3 text-center">Report</h1>
                         </div>
-                        <div class="bg-secondary text-center rounded p-4">
+                        <!-- <div class="bg-secondary text-center rounded p-4">
                             <div class="p-2 mb-2 bg-secondary text-white text-center">Click here to generate your report.</div>
                             <button  class="btn btn-outline-primary w-100 m-2"  id="downloadButton">Generate Report</button>
                             <script src="/FrontEnd/public/js/report.js"></script>
-                        </div>     
+                        </div>      -->
+                        <form action="/generate-pdf" method="post">
+                            <input type="hidden" name="Name" value="MOHAMMAD MAROUF">
+                            <input type="hidden" name="DueDate" value="2024-05-14">
+                            <button type="submit" class="btn btn-outline-primary w-100 m-2">Generate Report</button>
+                        </form>
                     </div>
                 </div>
                 <div class="container-fluid pt-4 px-4">
                     <div class="bg-secondary text-center rounded p-4">
-                        <div class="display-3 text-center">Table of the reports.</div>
+                        <div class="display-3 text-center">Transactions</div>
                         <div class="table-container">
                             <table id="transaction-table"
                                 class="table text-start align-middle table-bordered table-hover mb-0">
@@ -163,7 +168,7 @@
                                     <!-- Table rows will be dynamically generated here -->
                                 </tbody>
                             </table>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -174,7 +179,7 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Fraudector</a>, All Right Reserved. 
+                            &copy; <a href="#">Fraudector</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <a href="/Help/v1/">Help!</a>
