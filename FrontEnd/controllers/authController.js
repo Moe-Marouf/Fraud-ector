@@ -16,6 +16,8 @@ function generateOTP() {
   return otpGenerator.generate(6, { upperCase: false, specialChars: false });
 }
 
+
+
 router.get('/', (req, res) => {
   res.render('login');
 });
@@ -58,6 +60,35 @@ router.post('/login', async (req, res) => {
     res.render('otp', { otp });
   } catch (error) {
     console.error('Error during login', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// User registration route
+router.post('/register', async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    // Check if the email is already registered
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
+
+ 
+    const newUser = new User({
+      name,
+      email,
+      password
+    });
+
+    // Save the new user to the database
+    await newUser.save();
+
+    res.redirect("/home/v1/");
+  } catch (error) {
+    console.error('Error during user registration', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
