@@ -98,13 +98,21 @@
                     <div class="container-fluid pt-4 px-4">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="table-container">
-                                <div class="search-form">
-                                    <input type="text" id="searchNumber" placeholder="Search by Number">
-                                    <input type="text" id="searchNameOrig" placeholder="Name of Origin">
-                                    <input type="text" id="searchNameDest" placeholder="Name of Destination">
-                                    <input type="text" id="searchAmount" placeholder="Amount">
-                                    <input type="text" id="searchFraud" placeholder="Fraud">
-                                    <button onclick="searchTable()">Search</button>
+                                <div class="search-form ">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">-</span>
+                                        <input class="form-control" type="text" id="searchNumber" placeholder="Search by Number">
+                                        <span class="input-group-text">-</span>
+                                        <input class="form-control" type="text" id="searchNameOrig" placeholder="Name of Origin">
+                                        <span class="input-group-text">-</span>
+                                        <input class="form-control" type="text" id="searchNameDest" placeholder="Name of Destination">
+                                        <span class="input-group-text">-</span>
+                                        <input class="form-control" type="text" id="searchAmount" placeholder="Amount">
+                                        <span class="input-group-text">-</span>
+                                        <input class="form-control" type="text" id="searchFraud" placeholder="Fraud">
+                                        <span class="input-group-text">-</span>
+                                    </div>
+                                    <button class="btn btn-primary m-2" onclick="searchTable()">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -112,21 +120,23 @@
                     <div class="container-fluid pt-4 px-4">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="table-container">
-                                <table id="transaction-table2"
-                                    class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Number</th>
-                                            <th scope="col">Name of Origin</th>
-                                            <th scope="col">Name of Destination</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Fraud or not</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Table rows will be dynamically generated here -->
-                                    </tbody>
-                                </table>
+                                <div class="table-container">
+                                    <table id="transaction-table2"
+                                        class="table text-start align-middle table-bordered table-hover mb-0">
+                                        <thead>
+                                            <tr class="text-white">
+                                                <th scope="col">Number</th>
+                                                <th scope="col">Name of Origin</th>
+                                                <th scope="col">Name of Destination</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Fraud or not</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table rows will be dynamically generated here -->
+                                        </tbody>
+                                    </table>
+                                </div> 
                             </div>
                         </div>
                     </div>

@@ -100,8 +100,8 @@
             </nav>
             <!-- Navbar End -->
             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
-            <div class="container-fluid pt-4 px-4">
-                <div class="container-fluid pt-4 px-4">
+            <div class="container-fluid pt-4 px-4 chart-container">
+                <div class="row g-4">
                     <div class="row g-4">
                         <div class="col-sm-6 col-xl-3">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
@@ -142,34 +142,57 @@
                     </div>
                     <div class="container-fluid pt-4 px-4">
                         <div class="bg-secondary text-center rounded p-4">
-                        
                             <h6 class="mb-0">Connection Status:</h6>  
-                                  <div class="led-green"></div>
-                        
-                </div>
-                <div class="container-fluid pt-4 px-4">
-                    <div class="bg-secondary text-center rounded p-4">
-                        <div class="table-container">
-                            <table id="transaction-table2" class="table text-start align-middle table-bordered table-hover mb-0">
-                                <thead>
-                                    <tr class="text-white">
-                                        <th scope="col">Number</th>
-                                        <th scope="col">Name of Origin</th>
-                                        <th scope="col">Name of Destination</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Fraud or not</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Table rows will be dynamically generated here -->
-                                </tbody>
-                            </table>
+                            <div class="led-green"></div>
+                        </div>    
+                    </div> 
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="table-container">
+                                <table id="transaction-table"
+                                    class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr class="text-white">
+                                            <th scope="col">Number</th>
+                                            <th scope="col">Name of Origin</th>
+                                            <th scope="col">Name of Destination</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Fraud or not</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table rows will be dynamically generated here -->
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Fraud Transactions</h6>
+                            <canvas id="bar-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Payment Type</h6>
+                            <canvas id="bar-chart-type"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Fraud Transactions</h6>
+                            <canvas id="pie-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Payment Type</h6>
+                            <canvas id="pie-chart-type"></canvas>
                         </div>
                     </div>
                 </div>
-                    
-            </div>
-        </div>
             <!-- ourcode ends ----------------------------------------------------------------------------------------------------------------------------->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

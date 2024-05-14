@@ -21,11 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     newRow.innerHTML = `
                         <td>${index + 1}</td>
                         <td>${row['nameOrig']}</td>
-                        <td>${row['type']}</td>
-                        <td>${row['amount']}</td>
-                        <td>${row['oldbalanceOrg']}</td>
-                        <td>${row['newbalanceOrig']}</td>
                         <td>${row['nameDest']}</td>
+                        <td>${row['amount']}</td>
                         <td>${row['isFraud']}</td>
                     `;
                     tableBody.appendChild(newRow);

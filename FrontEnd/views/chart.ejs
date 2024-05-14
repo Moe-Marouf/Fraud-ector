@@ -91,122 +91,97 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
-            <div class="container-fluid pt-4 px-4 chart-container">
+             <!-- ourcode Start ----------------------------------------------------------------------------------------------------------------------------->
+             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="row g-4">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Transactions Today</p>
-                                    <h6 class="mb-0">176</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total Transactions</p>
-                                    <h6 class="mb-0">251,683</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Fraud Today</p>
-                                    <h6 class="mb-0">11</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total Fraud</p>
-                                    <h6 class="mb-0">2,310</h6>
-                                </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Transactions Today</p>
+                                <h6 class="mb-0">176</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="table-container">
-                                <table id="transaction-table"
-                                    class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Number</th>
-                                            <th scope="col">NameOrig</th>
-                                            <th scope="col">Type</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">OldBalanceOrg</th>
-                                            <th scope="col">NewBalanceOrig</th>
-                                            <th scope="col">NameDest</th>
-                                            <th scope="col">IsFraud</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Table rows will be dynamically generated here -->
-                                    </tbody>
-                                </table>
-                                
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Transactions</p>
+                                <h6 class="mb-0">251,683</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <button  class="btn btn-outline-primary w-100 m-2" id="downloadButton">Generate Report</button>
-                            <script src="/FrontEnd/public/js/report.js"></script>
-                        </div>    
-                    </div> 
-                    <script src="../public/js/report.js"></script>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Fraud Transactions</h6>
-                            <canvas id="bar-chart"></canvas>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Fraud Today</p>
+                                <h6 class="mb-0">11</h6>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Payment Type</h6>
-                            <canvas id="bar-chart-type"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Fraud Transactions</h6>
-                            <canvas id="pie-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Payment Type</h6>
-                            <canvas id="pie-chart-type"></canvas>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Fraud</p>
+                                <h6 class="mb-0">2,310</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- new Footer Start -->
+                <div class="row h-100 align-items justify-content-center" >
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3 col-xl-8 ">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <img src="/image/report.png" alt="report Icon">
+                            <h1 class=" display-3 text-center">Report</h1>
+                        </div>
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="p-2 mb-2 bg-secondary text-white text-center">Click here to generate your report.</div>
+                            <button  class="btn btn-outline-primary w-100 m-2"  id="downloadButton">Generate Report</button>
+                            <script src="/FrontEnd/public/js/report.js"></script>
+                        </div>     
+                    </div>
+                </div>
                 <div class="container-fluid pt-4 px-4">
-                    <div class="bg-secondary rounded-top p-4">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 text-center text-sm-start">
-                                &copy; <a href="#">Fraudector</a>, All Right Reserved.
-                            </div>
-                            <div class="col-12 col-sm-6 text-center text-sm-end">
-                                <a href="/Help/v1/">Help!</a>
-                            </div>
+                    <div class="bg-secondary text-center rounded p-4">
+                        <div class="display-3 text-center">Table of the reports.</div>
+                        <div class="table-container">
+                            <table id="transaction-table"
+                                class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-white">
+                                        <th scope="col">Number</th>
+                                        <th scope="col">Name of Origin</th>
+                                        <th scope="col">Name of Destination</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Fraud or not</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table rows will be dynamically generated here -->
+                                </tbody>
+                            </table>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ourcode Ends ----------------------------------------------------------------------------------------------------------------------------->
+            <!-- ourcode ends ----------------------------------------------------------------------------------------------------------------------------->
             <!-- Footer Start -->
-
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Fraudector</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <a href="/Help/v1/">Help!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Footer End -->
         </div>
         <!-- Content End -->
