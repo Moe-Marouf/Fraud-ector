@@ -65,10 +65,16 @@ app.get("/home/v1/",  async (req, res) => {
 });
 
 app.get("/Register/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("Register");
 });
 
 app.get("/settings/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
   res.render("settings");
 });
 
