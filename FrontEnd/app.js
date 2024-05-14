@@ -10,7 +10,6 @@ const PDFDocument = require('pdfkit');
 const authController = require('./controllers/authController');
 
 
-
 const User = require('./models/User');
 const Transaction = require('./models/transaction');
 const Comment = require('./models/comment');
@@ -31,8 +30,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-
-
 
 
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -83,6 +80,7 @@ app.get("/Register/v1/", (req, res) => {
 app.get("/settings/v1/", (req, res) => {
   res.render("settings");
 });
+
 app.get("/rules/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/'); 
@@ -96,12 +94,14 @@ app.get("/add/v1/", (req, res) => {
   }
   res.render("add");
 });
+
 app.get("/transactionhistory/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/'); 
   }
   res.render("transactionhistory");
 });
+
 app.get("/transaction/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/'); 
@@ -115,6 +115,35 @@ app.get("/charts/v1/", (req, res) => {
   }
   res.render("chart");
 });
+
+app.get("/Help/v1/", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+  res.render("Help");
+});
+
+app.get("/notifications/v1/", async (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/'); 
+  }
+  try {
+    // Retrieve data from MongoDB
+    const data = await Transaction.find();
+
+    // Render the dashboard EJS template with the data
+    res.render("notifications", { data });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Handle 404 errors
+app.use((req, res) => {
+  res.render("404");
+});
+
 
 //Send comment route
 app.post("/sendComment", async (req, res) => {
@@ -133,34 +162,6 @@ app.post("/sendComment", async (req, res) => {
     console.error("Error saving comment to MongoDB:", error);
     res.status(500).json({ error: "An error occurred while saving the comment." });
   }
-});
-
-app.get("/Help/v1/", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/'); 
-  }
-  res.render("Help");
-});
-app.get("/notifications/v1/", async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/'); 
-  }
-  try {
-    // Retrieve data from MongoDB
-    const data = await Transaction.find();
-
-    // Render the dashboard EJS template with the data
-    res.render("notifications", { data });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
-  }
-
-});
-
-// Handle 404 errors
-app.use((req, res) => {
-  res.render("404");
 });
 
 // Upload CSV route
@@ -225,8 +226,28 @@ app.post("/generate-pdf", (req, res) => {
   doc.end();
 });
 
+app.post('/searchTransactions', async (req, res) => {
+  try {
+      // Retrieve search criteria from request body
+      const { type, amount, nameOrig, isFraud } = req.body;
 
+      // Build the query based on search criteria
+      let query = {};
+      if (type) query.type = type;
+      if (amount) query.amount = amount;
+      if (nameOrig) query.nameOrig = nameOrig;
+      if (isFraud) query.isFraud = isFraud;
 
+      // Retrieve data from MongoDB based on the query
+      const filteredTransactions = await Transaction.find(query);
+
+      // Send the filtered data as a response
+      res.json(filteredTransactions);
+  } catch (error) {
+      console.error('Error filtering transactions:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

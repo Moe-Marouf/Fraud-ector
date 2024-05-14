@@ -99,12 +99,20 @@
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="table-container">
                                 <div class="search-form">
+                                    <input type="text" id="searchNumber" placeholder="Search by Number">
+                                    <input type="text" id="searchNameOrig" placeholder="Search by Name of Origin">
+                                    <input type="text" id="searchNameDest" placeholder="Search by Name of Destination">
+                                    <input type="text" id="searchAmount" placeholder="Search by Amount">
+                                    <input type="text" id="searchFraud" placeholder="Search by Fraud">
+                                    <button onclick="searchTable()">Search</button>
+                                </div>
+                                <!-- <div class="search-form">
                                     <input type="text" id="type" placeholder="Type">
                                     <input type="number" id="amount" placeholder="Amount">
                                     <input type="text" id="nameOrig" placeholder="Name of Origin">
                                     <input type="text" id="isFraud" placeholder="Fraud?">
                                     <button>Search</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>       
                     </div>
@@ -160,6 +168,7 @@
     <script src="/js/table.js"></script>
     <script src="/js/code.js"></script>
     <script src="/js/chart.js"></script>
+    <script src="/js/search.js"></script>
 
 </body>
 
