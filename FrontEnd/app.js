@@ -258,18 +258,47 @@ app.listen(PORT, () => {
 });
 
 
-//FLASK:
+//Old FLASK method:
+
+// const axios = require('axios');
+// async function makePrediction(features) {
+//   try {
+//     const response = await axios.post('http://localhost:5000/predict', {
+//       features: features
+//     });
+//     console.log('Prediction:', response.data);
+//   } catch (error) {
+//     console.error('Error making prediction:', error);
+//   }
+// }
+// makePrediction([[-100, -100]]);
+// makePrediction([[200, 300]]);
 
 const axios = require('axios');
-async function makePrediction(features) {
-  try {
-    const response = await axios.post('http://localhost:5000/predict', {
-      features: features
-    });
-    console.log('Prediction:', response.data);
-  } catch (error) {
-    console.error('Error making prediction:', error);
-  }
+
+function sendPredictionRequest(data) {
+    axios.post('http://localhost:5000/predict', data)
+        .then(response => {
+            console.log('Fraud Probability:', response.data.probability);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
-makePrediction([[-100, -100]]);
-makePrediction([[200, 300]]);
+
+// This is an example
+sendPredictionRequest({
+    type: 'PAYMENT',  // these are the valid classes for this typee: ['CASH_OUT' 'DEBIT' 'PAYMENT' 'TRANSFER']. they're case senstivie so make sure its right
+    amount: 2000,
+    nameOrig: 'C207471778',  //Example original name ID (it throws an error if its not the same as one of the ID's in the database. they represent people so their ID must be valid)
+    nameDest: 'M1979787155'  //Example destination name ID (same here aswell, but represnts recipient id)
+});
+
+//another example
+
+sendPredictionRequest({
+  type: 'PAYMENT',  
+  amount: 20000000,
+  nameOrig: 'C207471778',  
+  nameDest: 'M1979787155'  
+});
