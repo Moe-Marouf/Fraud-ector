@@ -210,24 +210,34 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   });
 });
 
+// app.post("/generate-pdf", (req, res) => {
+//   // Retrieve table data from request body
+//   const tableData = req.body.tableData;
+
+//   // Create PDF document
+//   const doc = new pdfkit();
+//   doc.pipe(res);
+
+//   // Add table data to PDF
+//   tableData.forEach(row => {
+//     row.forEach(cell => {
+//       doc.cell(100, 20, cell, { border: true });
+//     });
+//     doc.moveDown();
+//   });
+
+//   // Finalize PDF
+//   doc.end();
+// });
 app.post("/generate-pdf", (req, res) => {
-  // Retrieve table data from request body
-  const tableData = req.body.tableData;
-
-  // Create PDF document
-  const doc = new pdfkit();
-  doc.pipe(res);
-
-  // Add table data to PDF
-  tableData.forEach(row => {
-    row.forEach(cell => {
-      doc.cell(100, 20, cell, { border: true });
-    });
-    doc.moveDown();
+  const tableData = req.body.tableData; // Make sure this matches your frontend data structure
+  generatePDF(tableData, (err, pdfUrl) => {
+    if (err) {
+      res.status(500).json({ error: 'Failed to generate PDF' });
+    } else {
+      res.redirect(pdfUrl); // Redirect client to the PDF URL
+    }
   });
-
-  // Finalize PDF
-  doc.end();
 });
 
 app.post('/searchTransactions', async (req, res) => {

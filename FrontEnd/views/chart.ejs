@@ -137,18 +137,19 @@
                             <img src="/image/report.png" alt="report Icon">
                             <h1 class=" display-3 text-center">Report</h1>
                         </div>
-                        <!-- <div class="bg-secondary text-center rounded p-4">
-                            <div class="p-2 mb-2 bg-secondary text-white text-center">Click here to generate your report.</div>
-                            <button  class="btn btn-outline-primary w-100 m-2"  id="downloadButton">Generate Report</button>
-                            <script src="/FrontEnd/public/js/report.js"></script>
-                        </div>      -->
-                        <form action="/generate-pdf" method="post">
-                            <input type="hidden" name="Name" value="MOHAMMAD MAROUF">
-                            <input type="hidden" name="DueDate" value="2024-05-14">
-                            <button type="submit" class="btn btn-outline-primary w-100 m-2">Generate Report</button>
-                        </form>
+                        <!-- <form action="/generate-pdf" method="post"> -->
+                        <input type="hidden" name="Name" value="MOHAMMAD MAROUF">
+                        <input type="hidden" name="DueDate" value="2024-05-14">
+                        <button type="submit" id="myButton" class="btn btn-outline-primary w-100 m-2">Generate
+                            Report</button>
+                        <!-- </form> -->
                     </div>
                 </div>
+                <script type="text/javascript">
+                    document.getElementById("myButton").onclick = function () {
+                        location.href = "https://us1.pdfgeneratorapi.com/api/v4/documents/54893/971102cf70eda6daa8438af561948497/share";
+                    };
+                </script>
                 <div class="container-fluid pt-4 px-4">
                     <div class="bg-secondary text-center rounded p-4">
                         <div class="display-3 text-center">Transactions</div>
