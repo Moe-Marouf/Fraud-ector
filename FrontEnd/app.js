@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const PDFDocument = require('pdfkit');
 const authController = require('./controllers/authController');
+const csv = require('csv-parser');
 
 
 const User = require('./models/User');
@@ -24,8 +25,8 @@ const mongodbUri = process.env.MONGODB_URI;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
   secret: sessionSecret,
   resave: false,
@@ -168,6 +169,7 @@ app.post("/sendComment", async (req, res) => {
 
 // Upload CSV route
 app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
+  console.log('Route handler reached');
   const file = req.file;
   if (!file) {
     return res.status(400).send("No file uploaded");
