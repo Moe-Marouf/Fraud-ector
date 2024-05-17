@@ -276,29 +276,35 @@ app.listen(PORT, () => {
 
 const axios = require('axios');
 
-function sendPredictionRequest(data) {
-    axios.post('http://localhost:5000/predict', data)
-        .then(response => {
-            console.log('Fraud Probability:', response.data.probability);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+// Function to send prediction request with API key
+function sendPredictionRequest(data, apiKey) {
+    axios.post('http://localhost:5000/predict', data, {
+        headers: {
+            'X-API-KEY': apiKey
+        }
+    })
+    .then(response => {
+        console.log('Fraud Probability:', response.data.probability);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
-// This is an example
+// Example usage with user API key
+const userApiKey = '4832f43263b3ea8a8de7a1618acaf5a0';  // a users api key is here 
+
 sendPredictionRequest({
     type: 'PAYMENT',  // these are the valid classes for this typee: ['CASH_OUT' 'DEBIT' 'PAYMENT' 'TRANSFER']. they're case senstivie so make sure its right
     amount: 2000,
     nameOrig: 'C207471778',  //Example original name ID (it throws an error if its not the same as one of the ID's in the database. they represent people so their ID must be valid)
     nameDest: 'M1979787155'  //Example destination name ID (same here aswell, but represnts recipient id)
-});
+}, '4832f43263b3ea8a8de7a1618acaf5a0'); //this way
 
-//another example
-
+// Another example usage with user API key
 sendPredictionRequest({
-  type: 'PAYMENT',  
-  amount: 20000000,
-  nameOrig: 'C207471778',  
-  nameDest: 'M1979787155'  
-});
+    type: 'PAYMENT',
+    amount: 20000000,
+    nameOrig: 'C207471778',
+    nameDest: 'M1979787155'
+}, userApiKey); // or This way

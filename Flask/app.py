@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import torch
 import numpy as np
 import joblib
+from pymongo import MongoClient
 
 class LogisticRegressionModel(torch.nn.Module):
     def __init__(self, num_features):
@@ -31,9 +32,21 @@ label_encoder_type = joblib.load('type_encoder.gz')
 label_encoder_nameOrig = joblib.load('nameOrig_encoder.gz')
 label_encoder_nameDest = joblib.load('nameDest_encoder.gz')
 
+
+##MONGODB HERE
+
+mongo_uri = "mongodb+srv://218110172:218110172@apikeys.heskwp5.mongodb.net/?retryWrites=true&w=majority&appName=apikeys"
+client = MongoClient(mongo_uri)
+db = client['apikeys']
+api_keys_collection = db['api_keys']
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
+    api_key = request.headers.get('X-API-KEY')
+
+    if not api_key or not api_keys_collection.find_one({'api_key': api_key}):
+        return jsonify({'error': 'Unauthorized'}), 401
+    
     try:
         # preprocessing here (the input data when sent)
         type_encoded = label_encoder_type.transform([data['type']])
