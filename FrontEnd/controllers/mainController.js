@@ -50,11 +50,11 @@ router.get("/transaction/v1/", (req, res) => {
   res.render("transaction");
 });
 
-router.get("/charts/v1/", (req, res) => {
+router.get("/reports/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/');
   }
-  res.render("chart");
+  res.render("reports");
 });
 
 router.get("/Help/v1/", (req, res) => {
