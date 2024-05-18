@@ -27,11 +27,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({
-  secret: sessionSecret,
-  resave: false,
-  saveUninitialized: true
-}));
+// app.use(session({
+//   secret: sessionSecret,
+//   resave: false,
+//   saveUninitialized: true
+// }));
 
 
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -60,9 +60,9 @@ app.get("/login/v1/", (req, res) => {
 });
 
 app.get("/home/v1/", async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/');
+  // }
   res.render('dashboard');
 });
 
@@ -88,9 +88,9 @@ app.get("/rules/v1/", (req, res) => {
 });
 
 app.get("/add/v1/", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/');
+  // }
   res.render("add");
 });
 
@@ -141,31 +141,6 @@ app.post("/generate-pdf", (req, res) => {
   });
 });
 
-// Handle 404 errors
-app.use((req, res) => {
-  res.render("404");
-});
-
-//Send comment route
-app.post("/sendComment", async (req, res) => {
-  const { email, name, comment } = req.body;
-
-  if (!email || !name || !comment) {
-    return res.status(400).json({ error: "Please provide email, name, and comment" });
-  }
-
-  try {
-    const newComment = new Comment({ email, name, comment });
-    await newComment.save();
-    console.log("Comment saved to MongoDB");
-    res.status(201).json({ message: "Comment saved successfully!" });
-  } catch (error) {
-    console.error("Error saving comment to MongoDB:", error);
-    res.status(500).json({ error: "An error occurred while saving the comment." });
-  }
-});
-
-// Upload CSV route
 app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
   const file = req.file;
   if (!file) {
@@ -204,6 +179,26 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
     console.error("Error parsing CSV:", err);
     res.status(500).send("Error parsing CSV");
   });
+});
+
+
+//Send comment route
+app.post("/sendComment", async (req, res) => {
+  const { email, name, comment } = req.body;
+
+  if (!email || !name || !comment) {
+    return res.status(400).json({ error: "Please provide email, name, and comment" });
+  }
+
+  try {
+    const newComment = new Comment({ email, name, comment });
+    await newComment.save();
+    console.log("Comment saved to MongoDB");
+    res.status(201).json({ message: "Comment saved successfully!" });
+  } catch (error) {
+    console.error("Error saving comment to MongoDB:", error);
+    res.status(500).json({ error: "An error occurred while saving the comment." });
+  }
 });
 
 // app.post("/generate-pdf", (req, res) => {
@@ -257,6 +252,11 @@ app.post('/searchTransactions', async (req, res) => {
     console.error('Error filtering transactions:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+});
+
+// Handle 404 errors
+app.use((req, res) => {
+  res.render("404");
 });
 
 // Start the server
