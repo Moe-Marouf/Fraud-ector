@@ -27,11 +27,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(session({
-//   secret: sessionSecret,
-//   resave: false,
-//   saveUninitialized: true
-// }));
+app.use(session({
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true
+}));
 
 
 mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -60,9 +60,9 @@ app.get("/login/v1/", (req, res) => {
 });
 
 app.get("/home/v1/", async (req, res) => {
-  // if (!req.session.user) {
-  //   return res.redirect('/');
-  // }
+  if (!req.session.user) {
+    return res.redirect('/');
+  }
   res.render('dashboard');
 });
 
@@ -88,9 +88,9 @@ app.get("/rules/v1/", (req, res) => {
 });
 
 app.get("/add/v1/", (req, res) => {
-  // if (!req.session.user) {
-  //   return res.redirect('/');
-  // }
+  if (!req.session.user) {
+    return res.redirect('/');
+  }
   res.render("add");
 });
 
