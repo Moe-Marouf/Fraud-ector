@@ -129,7 +129,6 @@ app.get("/notifications/v1/", async (req, res) => {
   res.render('notifications');
 });
 
-
 app.post("/generate-pdf", (req, res) => {
   const data = req.body; // Assuming the data is sent in the request body
 
@@ -146,7 +145,6 @@ app.post("/generate-pdf", (req, res) => {
 app.use((req, res) => {
   res.render("404");
 });
-
 
 //Send comment route
 app.post("/sendComment", async (req, res) => {
@@ -169,7 +167,6 @@ app.post("/sendComment", async (req, res) => {
 
 // Upload CSV route
 app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
-  console.log('Route handler reached');
   const file = req.file;
   if (!file) {
     return res.status(400).send("No file uploaded");
@@ -177,8 +174,7 @@ app.post("/uploadCSV", upload.single("csvfile"), async (req, res) => {
 
   // Create model for transactions
   const Transaction = mongoose.model("Transaction", new mongoose.Schema({ data: Object }));
-
-  // Parse uploaded CSV file
+ // Parse uploaded CSV file
   const parser = fs.createReadStream(file.path)
     .pipe(csv({ delimiter: "," }));
 
