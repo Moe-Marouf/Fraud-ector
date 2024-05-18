@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => {
                 if (response.ok) {
                     alert("Comment sent successfully!");
-                    // Optionally, you can clear the form fields after successful submission
                     document.getElementById("emailInput").value = "";
                     document.getElementById("nameInput").value = "";
                     document.getElementById("commentInput").value = "";

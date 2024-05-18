@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/home/v1/", async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/');
+  // }
   res.render('dashboard');
 });
 
@@ -65,9 +65,9 @@ router.get("/Help/v1/", (req, res) => {
 });
 
 router.get("/notifications/v1/", async (req, res) => {
-  if (!req.session.user) {
-    return res.redirect('/');
-  }
+  // if (!req.session.user) {
+  //   return res.redirect('/');
+  // }
   res.render('notifications');
 });
 

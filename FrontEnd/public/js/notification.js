@@ -1,24 +1,43 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     const popup = document.getElementById('popup');
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to read CSV file
+    function readCSV(url, callback) {
+        fetch(url)
+            .then(response => response.text())
+            .then(callback);
+    }
 
+
+    function populateTable2(data) {
+        var tableBody = document.querySelector("#transaction-table tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
     
-//     function getRandomNumber() {
-//         return Math.floor(Math.random() * 1000);
-//     }
+        // Parse CSV data
+        Papa.parse(data, {
+            header: true,
+            complete: function(results) {
+                results.data.forEach(function(row, index) {
+                    // Create a new row in the table
+                    var newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${row['nameOrig']}</td>
+                        <td>${row['nameDest']}</td>
+                        <td>${row['amount']}</td>
+                        <td>${row['isFraud']}</td>
+                    `;
+                    tableBody.appendChild(newRow);
+                });
+            }
+        });
+    }
+    
+  
+   // Read CSV and create charts
+readCSV('/js/fraud.csv', function(data) {
 
-//     // Function to show the popup
-//     function showPopup() {
-//         const randomNumber = getRandomNumber();
-//         const randomNumberElement = document.getElementById('randomNumber');
-//         randomNumberElement.textContent = randomNumber;
-        
-//         popup.classList.add('show');
-//         setTimeout(() => {
-//             popup.classList.remove('show'); // Hide popup after 3 seconds
-//             setTimeout(showPopup, 30000); // Show new popup after 5 seconds
-//         }, 3000);
-//     }
+    populateTable2(data); // Added call to populateTable2 function
 
-//     // Initial delay before showing the first popup (5 seconds)
-//     setTimeout(showPopup, 10000);
-// });
+});
+
+
+});

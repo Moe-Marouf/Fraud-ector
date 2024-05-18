@@ -74,7 +74,6 @@ function createPieChartType(data) {
                     "rgba(235, 22, 22, .5)",
                     "rgba(235, 22, 22, .4)",
                     "rgba(235, 22, 22, .3)"
-                    // Add more colors as needed
                 ],
                 data: dataValues
             }];
@@ -123,7 +122,6 @@ function createPieChartType(data) {
                     backgroundColor: [
                         "rgba(235, 22, 22, .7)",
                         "rgba(54, 162, 235, .7)",
-                        // Add more colors as needed
                     ],
                     data: dataValues
                 }];
