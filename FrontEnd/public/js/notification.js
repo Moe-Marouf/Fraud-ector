@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function populateTable2(data) {
-        var tableBody = document.querySelector("#transaction-table tbody");
+        var tableBody = document.querySelector("#transaction-table2 tbody");
         tableBody.innerHTML = ""; // Clear existing rows
     
         // Parse CSV data
