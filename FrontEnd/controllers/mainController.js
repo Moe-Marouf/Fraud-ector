@@ -8,11 +8,11 @@ router.get("/home/v1/", async (req, res) => {
   res.render('dashboard');
 });
 
-router.get("/Register/v1/", (req, res) => {
+router.get("/register/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/');
   }
-  res.render("Register");
+  res.render("register");
 });
 
 router.get("/settings/v1/", (req, res) => {
@@ -57,11 +57,11 @@ router.get("/reports/v1/", (req, res) => {
   res.render("reports");
 });
 
-router.get("/Help/v1/", (req, res) => {
+router.get("/help/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/');
   }
-  res.render("Help");
+  res.render("help");
 });
 
 router.get("/notifications/v1/", async (req, res) => {

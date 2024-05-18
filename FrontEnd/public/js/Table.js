@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
   
    // Read CSV and create charts
-readCSV('/js/Data.csv', function(data) {
+readCSV('/js/data.csv', function(data) {
 
     populateTable2(data); // Added call to populateTable2 function
 

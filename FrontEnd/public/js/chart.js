@@ -256,7 +256,7 @@ function calculateTotalFraud(data) {
 
 
    // Read CSV and create charts
-readCSV('/js/Data.csv', function(data) {
+readCSV('/js/data.csv', function(data) {
     populateTable(data)
     createPieChart(data);
     createBarChart(data);

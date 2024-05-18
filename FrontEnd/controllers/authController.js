@@ -29,11 +29,11 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.render('Tryagain');
+      return res.render('tryagain');
     }
 
     if (user.password !== password) {
-      return res.render('Tryagain');
+      return res.render('tryagain');
     }
 
     const otp = generateOTP();
@@ -98,17 +98,17 @@ router.post('/verify-otp', async (req, res) => {
 
   try {
     if (!req.session.user) {
-      return res.render('Tryagain');
+      return res.render('tryagain');
     }
 
     if (req.session.user.otp !== otp) {
-      return res.render('Tryagain');
+      return res.render('tryagain');
     }
 
     const user = await User.findOne({ _id: req.session.user._id });
 
     if (!user) {
-      return res.render('Tryagain');
+      return res.render('tryagain');
     }
 
     user.otp = null;
