@@ -54,7 +54,7 @@ router.get("/transactionhistory/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/');
   }
-  res.render("transactionhistory");
+  res.render("transactionHistory");
 });
 
 router.get("/transaction/v1/", (req, res) => {
