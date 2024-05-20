@@ -15,6 +15,15 @@ const upload = multer({ dest: 'uploads/' });
 const sessionSecret = process.env.SESSION_SECRET;
 const mongodbUri = process.env.MONGODB_URI;
 
+// Middleware function to set cache control headers
+const setCacheControl = (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+};
+
+// Apply the setCacheControl middleware to all routes
+app.use(setCacheControl);
+
 // Controllers
 const authController = require('./controllers/authController');
 const mainController = require('./controllers/mainController');
