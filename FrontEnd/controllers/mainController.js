@@ -25,6 +25,10 @@ router.get("/register/v1/", (req, res) => {
   res.render("register");
 });
 
+router.get("/login/v1/", (req, res) => {
+  res.render("login");
+});
+
 router.get("/settings/v1/", (req, res) => {
   if (!req.session.user) {
     return res.redirect('/');
