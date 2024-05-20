@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/user');
 const otpGenerator = require('otp-generator');
 const nodemailer = require('nodemailer');
 
@@ -76,7 +76,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
- 
+
     const newUser = new User({
       name,
       email,
