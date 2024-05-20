@@ -38,14 +38,6 @@ mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true }
   .catch(err => console.error('Failed to connect to MongoDB', err));
 
 
-// Middleware function to set cache control headers
-const setCacheControl = (req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-};
-
-// Apply the setCacheControl middleware to all routes
-app.use(setCacheControl);
 
 // Route handling
 app.use('/', authController);
